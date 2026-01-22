@@ -1,0 +1,1887 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rahimi Solution | Premium Healthcare & Business IT Solutions</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-gold: #D4AF37;
+            --primary-dark: #0A0A0F;
+            --primary-navy: #1A1A2E;
+            --secondary-burgundy: #8B1E3F;
+            --accent-teal: #2EC4B6;
+            --light-cream: #F5F2E8;
+            --medium-gold: #B8860B;
+            --dark-gold: #8B7355;
+            --gradient-luxury: linear-gradient(135deg, var(--primary-gold) 0%, var(--medium-gold) 50%, var(--dark-gold) 100%);
+            --gradient-dark: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-navy) 100%);
+            --gradient-premium: linear-gradient(135deg, var(--primary-gold) 0%, var(--secondary-burgundy) 100%);
+            --shadow-soft: 0 10px 30px rgba(212, 175, 55, 0.1);
+            --shadow-hard: 0 25px 50px rgba(212, 175, 55, 0.2);
+            --shadow-luxury: 0 20px 40px rgba(139, 30, 63, 0.15);
+            --radius-elegant: 16px;
+            --radius-pill: 50px;
+            --transition-luxury: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--primary-dark);
+            color: var(--light-cream);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, .logo {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Luxury Header - FIXED FOR DESKTOP */
+        .luxury-header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(10, 10, 15, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+            transition: var(--transition-luxury);
+        }
+
+        .luxury-header.scrolled {
+            padding: 10px 0;
+            box-shadow: var(--shadow-hard);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 25px 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--gradient-luxury);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            color: var(--primary-dark);
+            font-size: 28px;
+            font-weight: 900;
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+        }
+
+        .logo-text {
+            font-size: 32px;
+            font-weight: 800;
+            background: var(--gradient-luxury);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 2px 10px rgba(212, 175, 55, 0.2);
+        }
+
+        .logo-subtitle {
+            font-size: 12px;
+            color: var(--light-cream);
+            display: block;
+            font-weight: 400;
+            opacity: 0.8;
+            letter-spacing: 1px;
+            margin-top: 2px;
+        }
+
+        /* DESKTOP NAVIGATION - Always visible on desktop */
+        .desktop-nav {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 40px;
+            margin-right: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--light-cream);
+            font-weight: 500;
+            font-size: 16px;
+            padding: 8px 0;
+            position: relative;
+            transition: var(--transition-luxury);
+            letter-spacing: 0.5px;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-gold);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient-luxury);
+            transition: width 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .luxury-cta {
+            background: var(--gradient-luxury);
+            color: var(--primary-dark);
+            padding: 14px 35px;
+            border-radius: var(--radius-pill);
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition-luxury);
+            box-shadow: var(--shadow-soft);
+            letter-spacing: 0.5px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .luxury-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-hard);
+        }
+
+        /* MOBILE TOGGLE - Only visible on mobile */
+        .mobile-toggle {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--primary-gold);
+            background: none;
+            border: none;
+            z-index: 1001;
+        }
+
+        /* MOBILE MENU - Hidden on desktop, visible on mobile when active */
+        .mobile-menu {
+            display: none; /* Hidden by default on all screens */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(10, 10, 15, 0.98);
+            padding: 100px 30px 30px;
+            transform: translateX(-100%);
+            opacity: 0;
+            transition: var(--transition-luxury);
+            z-index: 999;
+            backdrop-filter: blur(20px);
+            overflow-y: auto;
+        }
+
+        .mobile-menu.active {
+            transform: translateX(0);
+            opacity: 1;
+        }
+
+        .mobile-nav-links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .mobile-nav-links a {
+            display: block;
+            padding: 18px 0;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+            text-decoration: none;
+            color: var(--light-cream);
+            font-weight: 600;
+            font-size: 18px;
+            transition: var(--transition-luxury);
+        }
+
+        .mobile-nav-links a:hover {
+            color: var(--primary-gold);
+            padding-left: 15px;
+        }
+
+        .mobile-menu .luxury-cta {
+            margin-top: 40px;
+            display: block;
+            text-align: center;
+            width: 100%;
+        }
+
+        /* Luxury Hero Section */
+        .hero-luxury {
+            padding: 200px 0 150px;
+            background: var(--gradient-dark);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-luxury::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(212, 175, 55, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(139, 30, 63, 0.1) 0%, transparent 50%);
+        }
+
+        .hero-content {
+            max-width: 800px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(212, 175, 55, 0.1);
+            color: var(--primary-gold);
+            padding: 12px 25px;
+            border-radius: var(--radius-pill);
+            font-weight: 600;
+            margin-bottom: 30px;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            backdrop-filter: blur(10px);
+            letter-spacing: 1.5px;
+            font-size: 14px;
+        }
+
+        .hero-title {
+            font-size: 3.8rem;
+            line-height: 1.2;
+            margin-bottom: 25px;
+            color: var(--light-cream);
+        }
+
+        .hero-title span {
+            background: var(--gradient-luxury);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .hero-description {
+            font-size: 1.2rem;
+            color: rgba(245, 242, 232, 0.8);
+            margin-bottom: 50px;
+            max-width: 700px;
+            line-height: 1.8;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .btn-luxury {
+            background: var(--gradient-luxury);
+            color: var(--primary-dark);
+            padding: 16px 40px;
+            border-radius: var(--radius-pill);
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition-luxury);
+            border: none;
+            cursor: pointer;
+            box-shadow: var(--shadow-soft);
+            font-size: 16px;
+        }
+
+        .btn-luxury:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hard);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--primary-gold);
+            padding: 16px 40px;
+            border-radius: var(--radius-pill);
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition-luxury);
+            border: 2px solid var(--primary-gold);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(212, 175, 55, 0.1);
+            transform: translateY(-5px);
+        }
+
+        /* About Section */
+        .section {
+            padding: 120px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .section-title h2 {
+            font-size: 3.2rem;
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+            color: var(--light-cream);
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 3px;
+            background: var(--gradient-luxury);
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        .section-title p {
+            color: rgba(245, 242, 232, 0.8);
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 30px auto 0;
+            line-height: 1.8;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .about-text h3 {
+            font-size: 2rem;
+            margin-bottom: 25px;
+            color: var(--primary-gold);
+        }
+
+        .about-text p {
+            margin-bottom: 25px;
+            color: rgba(245, 242, 232, 0.8);
+            line-height: 1.8;
+        }
+
+        .vision-mission {
+            background: rgba(26, 26, 46, 0.7);
+            color: var(--light-cream);
+            padding: 70px;
+            border-radius: var(--radius-elegant);
+            margin-top: 60px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .vision-mission h3 {
+            color: var(--primary-gold);
+            margin-bottom: 40px;
+            font-size: 2.2rem;
+            text-align: center;
+        }
+
+        .vision-mission-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+        }
+
+        .vm-item {
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: var(--radius-elegant);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            transition: var(--transition-luxury);
+        }
+
+        .vm-item:hover {
+            border-color: var(--primary-gold);
+            transform: translateY(-5px);
+        }
+
+        .vm-item h4 {
+            color: var(--light-cream);
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        .vm-item h4 i {
+            margin-right: 15px;
+            color: var(--primary-gold);
+            font-size: 24px;
+        }
+
+        /* Luxury Services */
+        .services-luxury {
+            background: var(--primary-navy);
+            position: relative;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+        }
+
+        .service-card {
+            background: rgba(10, 10, 15, 0.7);
+            border-radius: var(--radius-elegant);
+            padding: 50px 40px;
+            box-shadow: var(--shadow-soft);
+            transition: var(--transition-luxury);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-luxury);
+            opacity: 0;
+            transition: opacity 0.6s ease;
+            z-index: -1;
+        }
+
+        .service-card:hover::before {
+            opacity: 0.05;
+        }
+
+        .service-card:hover {
+            transform: translateY(-15px);
+            border-color: var(--primary-gold);
+            box-shadow: var(--shadow-hard);
+        }
+
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            background: rgba(212, 175, 55, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 30px;
+            color: var(--primary-gold);
+            font-size: 32px;
+            border: 2px solid rgba(212, 175, 55, 0.3);
+        }
+
+        .service-card h3 {
+            font-size: 1.6rem;
+            margin-bottom: 20px;
+            color: var(--light-cream);
+        }
+
+        .service-card p {
+            color: rgba(245, 242, 232, 0.8);
+            margin-bottom: 25px;
+            line-height: 1.7;
+        }
+
+        .service-features {
+            list-style: none;
+            margin-top: 25px;
+        }
+
+        .service-features li {
+            padding: 10px 0;
+            color: rgba(245, 242, 232, 0.8);
+            position: relative;
+            padding-left: 30px;
+            line-height: 1.6;
+        }
+
+        .service-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--primary-gold);
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        /* Why Choose Us - Luxury */
+        .why-luxury {
+            background: var(--gradient-dark);
+        }
+
+        .reasons-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 35px;
+        }
+
+        .reason-card {
+            text-align: center;
+            padding: 50px 30px;
+            background: rgba(26, 26, 46, 0.7);
+            border-radius: var(--radius-elegant);
+            transition: var(--transition-luxury);
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .reason-card:hover {
+            background: rgba(212, 175, 55, 0.05);
+            transform: translateY(-10px);
+            border-color: var(--primary-gold);
+            box-shadow: var(--shadow-hard);
+        }
+
+        .reason-icon {
+            width: 70px;
+            height: 70px;
+            background: var(--gradient-luxury);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            color: var(--primary-dark);
+            font-size: 28px;
+            transition: var(--transition-luxury);
+        }
+
+        .reason-card:hover .reason-icon {
+            transform: rotate(360deg) scale(1.1);
+        }
+
+        .reason-card h4 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: var(--light-cream);
+        }
+
+        .reason-card p {
+            color: rgba(245, 242, 232, 0.8);
+        }
+
+        /* Industries - Luxury */
+        .industries-luxury {
+            background: var(--primary-navy);
+            position: relative;
+        }
+
+        .industries-luxury::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at center, rgba(212, 175, 55, 0.05) 0%, transparent 70%);
+        }
+
+        .industries-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 35px;
+            text-align: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        .industry-item {
+            padding: 40px 25px;
+            background: rgba(10, 10, 15, 0.7);
+            border-radius: var(--radius-elegant);
+            backdrop-filter: blur(10px);
+            transition: var(--transition-luxury);
+            border: 1px solid rgba(212, 175, 55, 0.1);
+        }
+
+        .industry-item:hover {
+            background: rgba(212, 175, 55, 0.05);
+            transform: translateY(-10px);
+            border-color: var(--primary-gold);
+            box-shadow: var(--shadow-luxury);
+        }
+
+        .industry-item i {
+            font-size: 48px;
+            margin-bottom: 25px;
+            color: var(--primary-gold);
+            transition: var(--transition-luxury);
+        }
+
+        .industry-item:hover i {
+            transform: scale(1.2);
+        }
+
+        .industry-item h4 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--light-cream);
+        }
+
+        .industry-item p {
+            color: rgba(245, 242, 232, 0.8);
+            font-size: 14px;
+        }
+
+        /* Future Plans - Luxury */
+        .future-plans-luxury {
+            background: var(--gradient-dark);
+        }
+
+        .plans-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+            gap: 35px;
+        }
+
+        .plan-card {
+            background: rgba(26, 26, 46, 0.7);
+            padding: 50px 35px;
+            border-radius: var(--radius-elegant);
+            text-align: center;
+            box-shadow: var(--shadow-soft);
+            transition: var(--transition-luxury);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .plan-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--gradient-luxury);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.6s ease;
+        }
+
+        .plan-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .plan-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary-gold);
+            box-shadow: var(--shadow-hard);
+        }
+
+        .plan-icon {
+            width: 80px;
+            height: 80px;
+            background: rgba(212, 175, 55, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 30px;
+            color: var(--primary-gold);
+            font-size: 32px;
+            border: 2px solid rgba(212, 175, 55, 0.3);
+            transition: var(--transition-luxury);
+        }
+
+        .plan-card:hover .plan-icon {
+            background: var(--gradient-luxury);
+            color: var(--primary-dark);
+            transform: rotateY(180deg);
+        }
+
+        .plan-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--light-cream);
+        }
+
+        .plan-card p {
+            color: rgba(245, 242, 232, 0.8);
+            line-height: 1.7;
+        }
+
+        /* Contact - Luxury */
+        .contact-luxury {
+            background: var(--primary-navy);
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: start;
+        }
+
+        .contact-info h3 {
+            font-size: 2.2rem;
+            margin-bottom: 25px;
+            color: var(--primary-gold);
+        }
+
+        .contact-details {
+            margin-top: 50px;
+        }
+
+        .contact-detail {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 35px;
+        }
+
+        .contact-icon {
+            width: 60px;
+            height: 60px;
+            background: rgba(212, 175, 55, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 25px;
+            color: var(--primary-gold);
+            font-size: 24px;
+            flex-shrink: 0;
+            border: 2px solid rgba(212, 175, 55, 0.3);
+            transition: var(--transition-luxury);
+        }
+
+        .contact-detail:hover .contact-icon {
+            background: var(--gradient-luxury);
+            color: var(--primary-dark);
+            transform: rotateY(180deg);
+        }
+
+        .contact-text h4 {
+            font-size: 1.3rem;
+            margin-bottom: 8px;
+            color: var(--light-cream);
+        }
+
+        .contact-text a {
+            color: var(--primary-gold);
+            text-decoration: none;
+            transition: var(--transition-luxury);
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .contact-text a:hover {
+            color: var(--light-cream);
+            padding-left: 5px;
+        }
+
+        .contact-form {
+            background: rgba(10, 10, 15, 0.7);
+            padding: 50px;
+            border-radius: var(--radius-elegant);
+            box-shadow: var(--shadow-hard);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .form-group {
+            margin-bottom: 30px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: var(--primary-gold);
+            font-size: 15px;
+            letter-spacing: 0.5px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 18px 20px;
+            background: rgba(245, 242, 232, 0.05);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 10px;
+            color: var(--light-cream);
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+            transition: var(--transition-luxury);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary-gold);
+            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+            background: rgba(245, 242, 232, 0.08);
+        }
+
+        textarea.form-control {
+            min-height: 160px;
+            resize: vertical;
+        }
+
+        /* Luxury Footer */
+        .luxury-footer {
+            background: var(--primary-dark);
+            color: var(--light-cream);
+            padding: 100px 0 40px;
+            border-top: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 60px;
+            margin-bottom: 70px;
+        }
+
+        .footer-logo {
+            font-size: 32px;
+            font-weight: 800;
+            background: var(--gradient-luxury);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+
+        .footer-about p {
+            color: rgba(245, 242, 232, 0.8);
+            margin-bottom: 30px;
+            line-height: 1.8;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-link {
+            width: 45px;
+            height: 45px;
+            background: rgba(212, 175, 55, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-gold);
+            text-decoration: none;
+            transition: var(--transition-luxury);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+        }
+
+        .social-link:hover {
+            background: var(--gradient-luxury);
+            color: var(--primary-dark);
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-soft);
+        }
+
+        .footer-heading {
+            font-size: 1.4rem;
+            margin-bottom: 30px;
+            position: relative;
+            padding-bottom: 15px;
+            color: var(--light-cream);
+        }
+
+        .footer-heading::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--gradient-luxury);
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 15px;
+        }
+
+        .footer-links a {
+            color: rgba(245, 242, 232, 0.8);
+            text-decoration: none;
+            transition: var(--transition-luxury);
+            display: inline-block;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-gold);
+            padding-left: 10px;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 50px;
+            border-top: 1px solid rgba(212, 175, 55, 0.1);
+            color: rgba(245, 242, 232, 0.6);
+            font-size: 14px;
+            letter-spacing: 0.5px;
+        }
+
+        /* RESPONSIVE DESIGN - FIXED */
+        /* Tablet: Show hamburger menu below 1024px */
+        @media (max-width: 1024px) {
+            .nav-links {
+                gap: 30px;
+                margin-right: 20px;
+            }
+            
+            .nav-links a {
+                font-size: 15px;
+            }
+            
+            .luxury-cta {
+                padding: 12px 25px;
+                font-size: 14px;
+            }
+        }
+
+        /* Mobile: Show hamburger menu, hide desktop nav */
+        @media (max-width: 992px) {
+            .desktop-nav {
+                display: none;
+            }
+            
+            .mobile-toggle {
+                display: block;
+            }
+            
+            .mobile-menu {
+                display: block; /* Show mobile menu container on mobile */
+            }
+            
+            .hero-title {
+                font-size: 3rem;
+            }
+            
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 50px;
+            }
+            
+            .vision-mission-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .contact-container {
+                grid-template-columns: 1fr;
+                gap: 50px;
+            }
+        }
+
+        /* Desktop: Hide mobile menu completely */
+        @media (min-width: 993px) {
+            .mobile-menu {
+                display: none !important; /* Force hide on desktop */
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-luxury {
+                padding: 160px 0 100px;
+            }
+            
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .btn-luxury, .btn-secondary {
+                width: 100%;
+                text-align: center;
+            }
+            
+            .service-card, .reason-card, .industry-item, .plan-card {
+                padding: 40px 30px;
+            }
+            
+            .vision-mission, .contact-form {
+                padding: 40px 30px;
+            }
+            
+            .mobile-menu {
+                padding: 120px 20px 40px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo-icon {
+                width: 50px;
+                height: 50px;
+                font-size: 24px;
+            }
+            
+            .logo-text {
+                font-size: 26px;
+            }
+            
+            .logo-subtitle {
+                font-size: 10px;
+            }
+            
+            .hero-title {
+                font-size: 2rem;
+            }
+            
+            .section {
+                padding: 80px 0;
+            }
+        }
+
+        /* Animation Classes */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: var(--transition-luxury);
+        }
+
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Luxury Header -->
+    <header class="luxury-header" id="header">
+        <div class="container">
+            <div class="nav-container">
+                <a href="#" class="logo">
+                    <div class="logo-icon">RS</div>
+                    <div>
+                        <div class="logo-text">Rahimi Solution</div>
+                        <span class="logo-subtitle">PREMIUM HEALTHCARE & BUSINESS IT SOLUTIONS</span>
+                    </div>
+                </a>
+                
+                <!-- Desktop Navigation - Visible on laptop/desktop -->
+                <div class="desktop-nav">
+                    <ul class="nav-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#why-us">Why Choose Us</a></li>
+                        <li><a href="#industries">Industries</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                    <a href="#contact" class="luxury-cta">Get Premium Consultation</a>
+                </div>
+                
+                <!-- Mobile Toggle - Only visible on mobile -->
+                <button class="mobile-toggle" id="mobileToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu - Hidden by default, shown on mobile when activated -->
+        <div class="mobile-menu" id="mobileMenu">
+            <ul class="mobile-nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#why-us">Why Choose Us</a></li>
+                <li><a href="#industries">Industries</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="#contact" class="luxury-cta">Get Consultation</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Luxury Hero Section -->
+    <section class="hero-luxury section" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <span class="hero-badge">ELITE HEALTHCARE & BUSINESS IT SPECIALISTS</span>
+                <h1 class="hero-title animate-on-scroll">Premium Digital Transformation for <span>Healthcare Excellence</span></h1>
+                <p class="hero-description animate-on-scroll">
+                    Rahimi Solution crafts bespoke electronic systems, HMIS platforms, E-Prescription solutions, 
+                    and enterprise-grade digital infrastructures for clinics, hospitals, pharmacies, and businesses— 
+                    delivering security, efficiency, and unparalleled user experience.
+                </p>
+                <div class="hero-buttons animate-on-scroll">
+                    <a href="#services" class="btn-luxury">Explore Premium Solutions</a>
+                    <a href="#contact" class="btn-secondary">Schedule Elite Consultation</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section" id="about">
+        <div class="container">
+            <div class="section-title animate-on-scroll">
+                <h2>About Rahimi Solution</h2>
+                <p>Leading provider of premium technology and digital health solutions for discerning healthcare providers and enterprises</p>
+            </div>
+            
+            <div class="about-content">
+                <div class="about-text animate-on-scroll">
+                    <h3>Excellence in Digital Healthcare</h3>
+                    <p>
+                        Rahimi Solution is a premier technology and digital health solutions firm specializing in 
+                        the development of sophisticated databases, web-based and offline systems, and cutting-edge 
+                        healthcare information technologies. We are dedicated to empowering clinics, hospitals, 
+                        pharmacies, and enterprises with secure, efficient, and luxurious digital experiences.
+                    </p>
+                    <p>
+                        With an unwavering commitment to innovation, reliability, and bespoke solutions, Rahimi 
+                        Solution delivers customized software products that elevate workflow efficiency, ensure 
+                        data integrity, and enhance service quality for our distinguished clients.
+                    </p>
+                </div>
+                
+                <div class="about-text animate-on-scroll">
+                    <h3>Our Commitment to Excellence</h3>
+                    <p>
+                        We forge enduring partnerships with our clients by providing solutions that 
+                        masterfully address their unique challenges. Our elite team combines technical mastery 
+                        with profound understanding of healthcare and enterprise operations.
+                    </p>
+                    <p>
+                        From boutique clinics to prestigious hospitals, from local enterprises to international 
+                        organizations, we deliver solutions that create tangible impact in day-to-day operations 
+                        while maintaining the highest standards of luxury and sophistication.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="vision-mission animate-on-scroll">
+                <h3>Our Vision & Mission</h3>
+                <div class="vision-mission-grid">
+                    <div class="vm-item">
+                        <h4><i class="fas fa-gem"></i> Our Vision</h4>
+                        <p>
+                            To establish ourselves as the preeminent provider of digital healthcare and 
+                            business management solutions in the region by delivering intelligent, secure, 
+                            and sophisticated technology that empowers organizations and elevates service 
+                            delivery to extraordinary levels.
+                        </p>
+                    </div>
+                    <div class="vm-item">
+                        <h4><i class="fas fa-crown"></i> Our Mission</h4>
+                        <p>
+                            To architect and implement superior software solutions tailored to real‑world 
+                            requirements, support healthcare providers with reliable and elegant electronic 
+                            systems, champion digital transformation, and provide continuous premium 
+                            technical support for our esteemed clients.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="section services-luxury" id="services">
+        <div class="container">
+            <div class="section-title animate-on-scroll">
+                <h2>Premium Services</h2>
+                <p>Comprehensive digital solutions designed for healthcare and business excellence</p>
+            </div>
+            
+            <div class="services-grid">
+                <div class="service-card animate-on-scroll">
+                    <div class="service-icon">
+                        <i class="fas fa-prescription-bottle-alt"></i>
+                    </div>
+                    <h3>Electronic Prescription Systems</h3>
+                    <p>Secure and sophisticated e-prescription platforms for elite clinics, hospitals, and pharmacies.</p>
+                    <ul class="service-features">
+                        <li>Advanced doctor authentication system</li>
+                        <li>Comprehensive patient records management</li>
+                        <li>Digital prescription generation with signatures</li>
+                        <li>Integrated drug database with interactions</li>
+                        <li>Printable and shareable premium prescriptions</li>
+                        <li>Offline and online seamless operation modes</li>
+                    </ul>
+                </div>
+                
+                <div class="service-card animate-on-scroll">
+                    <div class="service-icon">
+                        <i class="fas fa-hospital-alt"></i>
+                    </div>
+                    <h3>Hospital Management System</h3>
+                    <p>Complete hospital management solutions for exceptional healthcare delivery.</p>
+                    <ul class="service-features">
+                        <li>Patient registration and premium billing</li>
+                        <li>OPD and IPD comprehensive management</li>
+                        <li>Laboratory and radiology advanced modules</li>
+                        <li>Pharmacy and inventory precision control</li>
+                        <li>Staff and duty intelligent scheduling</li>
+                        <li>Advanced reports and analytics dashboard</li>
+                    </ul>
+                </div>
+                
+                <div class="service-card animate-on-scroll">
+                    <div class="service-icon">
+                        <i class="fas fa-folder-open"></i>
+                    </div>
+                    <h3>Record Management System</h3>
+                    <p>Customized RMS solutions for elite clinics, labs, diagnostic centers, and enterprises.</p>
+                    <ul class="service-features">
+                        <li>Military-grade secure data storage</li>
+                        <li>Lightning-fast record retrieval system</li>
+                        <li>Role‑based granular access control</li>
+                        <li>Automated backup and disaster recovery</li>
+                        <li>Custom report generation engine</li>
+                        <li>Multi‑branch enterprise support</li>
+                    </ul>
+                </div>
+                
+                <div class="service-card animate-on-scroll">
+                    <div class="service-icon">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <h3>Website & Application Development</h3>
+                    <p>Premium websites and applications for distinguished businesses and healthcare providers.</p>
+                    <ul class="service-features">
+                        <li>Professional business websites</li>
+                        <li>Clinic and hospital premium websites</li>
+                        <li>Sophisticated web applications</li>
+                        <li>Offline desktop enterprise systems</li>
+                        <li>Secure encrypted database design</li>
+                        <li>Scalable cloud architecture</li>
+                    </ul>
+                </div>
+                
+                <div class="service-card animate-on-scroll">
+                    <div class="service-icon">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <h3>Content Management System</h3>
+                    <p>Intuitive CMS platforms for organizations to manage their digital presence elegantly.</p>
+                    <ul class="service-features">
+                        <li>Intuitive content editing interface</li>
+                        <li>Multilingual comprehensive support</li>
+                        <li>Modern responsive premium design</li>
+                        <li>SEO‑optimized structure</li>
+                        <li>Advanced user management system</li>
+                        <li>Mobile‑first optimized layout</li>
+                    </ul>
+                </div>
+                
+                <div class="service-card animate-on-scroll">
+                    <div class="service-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>IT Consultation & Support</h3>
+                    <p>Expert IT consultation and premium technical support for all our solutions.</p>
+                    <ul class="service-features">
+                        <li>Comprehensive system analysis</li>
+                        <li>White-glove implementation support</li>
+                        <li>Staff training and certification</li>
+                        <li>24/7 premium technical support</li>
+                        <li>System updates and maintenance</li>
+                        <li>Data security auditing</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us Section -->
+    <section class="section why-luxury" id="why-us">
+        <div class="container">
+            <div class="section-title animate-on-scroll">
+                <h2>Why Choose Rahimi Solution?</h2>
+                <p>We deliver excellence through innovation, reliability, and dedicated premium support</p>
+            </div>
+            
+            <div class="reasons-grid">
+                <div class="reason-card animate-on-scroll">
+                    <div class="reason-icon">
+                        <i class="fas fa-gem"></i>
+                    </div>
+                    <h4>Bespoke Solutions</h4>
+                    <p>Tailored specifically for your unique needs and sophisticated workflows</p>
+                </div>
+                
+                <div class="reason-card animate-on-scroll">
+                    <div class="reason-icon">
+                        <i class="fas fa-user-md"></i>
+                    </div>
+                    <h4>Healthcare IT Mastery</h4>
+                    <p>Profound understanding of advanced medical systems and requirements</p>
+                </div>
+                
+                <div class="reason-card animate-on-scroll">
+                    <div class="reason-icon">
+                        <i class="fas fa-wifi"></i>
+                    </div>
+                    <h4>Offline & Online Excellence</h4>
+                    <p>Reliable operation even in challenging internet environments</p>
+                </div>
+                
+                <div class="reason-card animate-on-scroll">
+                    <div class="reason-icon">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <h4>Premium Data Security</h4>
+                    <p>Enterprise-grade patient and business data protection</p>
+                </div>
+                
+                <div class="reason-card animate-on-scroll">
+                    <div class="reason-icon">
+                        <i class="fas fa-award"></i>
+                    </div>
+                    <h4>Competitive Excellence</h4>
+                    <p>Premium value packages for distinguished organizations</p>
+                </div>
+                
+                <div class="reason-card animate-on-scroll">
+                    <div class="reason-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h4>Concierge Support</h4>
+                    <p>Priority response and on‑site premium assistance</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Industries Section -->
+    <section class="section industries-luxury" id="industries">
+        <div class="container">
+            <div class="section-title animate-on-scroll">
+                <h2>Industries We Serve</h2>
+                <p>Transforming operations across multiple sectors with bespoke premium solutions</p>
+            </div>
+            
+            <div class="industries-grid">
+                <div class="industry-item animate-on-scroll">
+                    <i class="fas fa-hospital"></i>
+                    <h4>Hospitals</h4>
+                    <p>Complete HMIS solutions</p>
+                </div>
+                
+                <div class="industry-item animate-on-scroll">
+                    <i class="fas fa-clinic-medical"></i>
+                    <h4>Clinics</h4>
+                    <p>E‑prescription & RMS systems</p>
+                </div>
+                
+                <div class="industry-item animate-on-scroll">
+                    <i class="fas fa-prescription-bottle-alt"></i>
+                    <h4>Pharmacies</h4>
+                    <p>Inventory & dispensing systems</p>
+                </div>
+                
+                <div class="industry-item animate-on-scroll">
+                    <i class="fas fa-microscope"></i>
+                    <h4>Diagnostic Centers</h4>
+                    <p>Laboratory management systems</p>
+                </div>
+                
+                <div class="industry-item animate-on-scroll">
+                    <i class="fas fa-heart"></i>
+                    <h4>NGOs & Health Projects</h4>
+                    <p>Specialized healthcare solutions</p>
+                </div>
+                
+                <div class="industry-item animate-on-scroll">
+                    <i class="fas fa-briefcase"></i>
+                    <h4>Small & Medium Businesses</h4>
+                    <p>Business management systems</p>
+                </div>
+                
+                <div class="industry-item animate-on-scroll">
+                    <i class="fas fa-graduation-cap"></i>
+                    <h4>Educational Institutions</h4>
+                    <p>Academic management systems</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Future Plans Section -->
+    <section class="section future-plans-luxury">
+        <div class="container">
+            <div class="section-title animate-on-scroll">
+                <h2>Future Plans & Innovations</h2>
+                <p>We're pioneering the future of healthcare technology with visionary solutions</p>
+            </div>
+            
+            <div class="plans-grid">
+                <div class="plan-card animate-on-scroll">
+                    <div class="plan-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3>AI‑Based Medical Support</h3>
+                    <p>Artificial intelligence for advanced medical decision support and diagnostics</p>
+                </div>
+                
+                <div class="plan-card animate-on-scroll">
+                    <div class="plan-icon">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <h3>Telemedicine Platforms</h3>
+                    <p>Secure video consultation and remote patient monitoring systems</p>
+                </div>
+                
+                <div class="plan-card animate-on-scroll">
+                    <div class="plan-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>Mobile Health Applications</h3>
+                    <p>Patient‑centric mobile apps for health tracking and communication</p>
+                </div>
+                
+                <div class="plan-card animate-on-scroll">
+                    <div class="plan-icon">
+                        <i class="fas fa-network-wired"></i>
+                    </div>
+                    <h3>National E‑Health Systems</h3>
+                    <p>Large‑scale integrated health information exchange platforms</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section contact-luxury" id="contact">
+        <div class="container">
+            <div class="section-title animate-on-scroll">
+                <h2>Contact Us</h2>
+                <p>Begin your journey toward digital excellence with our premium consultation</p>
+            </div>
+            
+            <div class="contact-container">
+                <div class="contact-info animate-on-scroll">
+                    <h3>Start Your Premium Digital Transformation</h3>
+                    <p>
+                        Ready to elevate your healthcare facility or business with sophisticated digital solutions? 
+                        Our elite team of experts is prepared to understand your requirements and deliver 
+                        the perfect premium solution.
+                    </p>
+                    
+                    <div class="contact-details">
+                        <div class="contact-detail">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone-alt"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>Phone Number</h4>
+                                <a href="tel:+93784475000">+93 784 475 000</a>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-detail">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>Email Address</h4>
+                                <a href="mailto:drkamalnasirrahim@gmail.com">drkamalnasirrahim@gmail.com</a><br>
+                                <a href="mailto:info@rahimi-solution.com">info@rahimi-solution.com</a>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-detail">
+                            <div class="contact-icon">
+                                <i class="fas fa-globe"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>Website</h4>
+                                <a href="https://rahimi-solution.com" target="_blank">rahimi-solution.com</a>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-detail">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>Service Areas</h4>
+                                <p>Afghanistan & International Premium Clients</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-form animate-on-scroll">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Full Name *</label>
+                            <input type="text" id="name" class="form-control" placeholder="Enter your full name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email Address *</label>
+                            <input type="email" id="email" class="form-control" placeholder="Enter your email address" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" class="form-control" placeholder="Enter your phone number">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="organization">Organization</label>
+                            <input type="text" id="organization" class="form-control" placeholder="Your company or clinic name">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="service">Service Interested In</label>
+                            <select id="service" class="form-control">
+                                <option value="">Select a premium service</option>
+                                <option value="eprescription">Electronic Prescription System</option>
+                                <option value="hmis">Hospital Management System</option>
+                                <option value="rms">Record Management System</option>
+                                <option value="cms">Content Management System</option>
+                                <option value="website">Premium Website Development</option>
+                                <option value="consultation">IT Consultation</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Project Details *</label>
+                            <textarea id="message" class="form-control" placeholder="Tell us about your project requirements" required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn-luxury" style="width: 100%;">Request Premium Consultation</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Luxury Footer -->
+    <footer class="luxury-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div>
+                    <div class="footer-logo">Rahimi Solution</div>
+                    <p class="footer-about">
+                        Transforming healthcare and businesses through sophisticated digital solutions. 
+                        We deliver secure, efficient, and premium systems for distinguished clinics, hospitals, 
+                        pharmacies, and enterprises.
+                    </p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <h4 class="footer-heading">Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#why-us">Why Choose Us</a></li>
+                        <li><a href="#industries">Industries</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h4 class="footer-heading">Premium Services</h4>
+                    <ul>
+                        <li><a href="#services">E‑Prescription Systems</a></li>
+                        <li><a href="#services">Hospital Management</a></li>
+                        <li><a href="#services">Record Management</a></li>
+                        <li><a href="#services">Website Development</a></li>
+                        <li><a href="#services">CMS Development</a></li>
+                        <li><a href="#services">IT Consultation</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h4 class="footer-heading">Company Values</h4>
+                    <ul>
+                        <li><a>Integrity & Excellence</a></li>
+                        <li><a>Client‑Centric Approach</a></li>
+                        <li><a>Data Security & Privacy</a></li>
+                        <li><a>Continuous Innovation</a></li>
+                        <li><a>Long‑Term Partnership</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2024 Rahimi Solution. All Rights Reserved. | Premium Systems for an Exceptional Future</p>
+                <p style="margin-top: 15px;">Contact: +93 784 475 000 | Email: drkamalnasirrahim@gmail.com | Website: rahimi-solution.com</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile menu toggle - FIXED
+        const mobileToggle = document.getElementById('mobileToggle');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const body = document.body;
+        
+        mobileToggle.addEventListener('click', function(e) {
+            e.stopPropagation();
+            mobileMenu.classList.toggle('active');
+            mobileToggle.innerHTML = mobileMenu.classList.contains('active') 
+                ? '<i class="fas fa-times"></i>' 
+                : '<i class="fas fa-bars"></i>';
+            
+            // Prevent scrolling when mobile menu is open
+            if (mobileMenu.classList.contains('active')) {
+                body.style.overflow = 'hidden';
+            } else {
+                body.style.overflow = 'auto';
+            }
+        });
+
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.mobile-nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+                mobileToggle.innerHTML = '<i class="fas fa-bars"></i>';
+                body.style.overflow = 'auto';
+            });
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(e) {
+            if (mobileMenu.classList.contains('active') && 
+                !mobileMenu.contains(e.target) && 
+                !mobileToggle.contains(e.target)) {
+                mobileMenu.classList.remove('active');
+                mobileToggle.innerHTML = '<i class="fas fa-bars"></i>';
+                body.style.overflow = 'auto';
+            }
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Form submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.textContent;
+            
+            // Show loading state
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+            submitBtn.disabled = true;
+            
+            // Simulate form submission
+            setTimeout(() => {
+                // Show success message
+                const successMsg = document.createElement('div');
+                successMsg.innerHTML = `
+                    <div style="
+                        position: fixed;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%, -50%);
+                        background: var(--primary-navy);
+                        border: 2px solid var(--primary-gold);
+                        padding: 40px;
+                        border-radius: var(--radius-elegant);
+                        color: var(--light-cream);
+                        text-align: center;
+                        z-index: 10000;
+                        box-shadow: var(--shadow-hard);
+                        max-width: 400px;
+                        width: 90%;
+                    ">
+                        <i class="fas fa-check-circle" style="color: var(--primary-gold); font-size: 48px; margin-bottom: 20px;"></i>
+                        <h3 style="color: var(--primary-gold); margin-bottom: 15px;">Request Submitted!</h3>
+                        <p>Thank you for your interest. Our premium team will contact you within 24 hours.</p>
+                        <button onclick="this.parentElement.remove()" class="btn-luxury" style="margin-top: 25px; padding: 12px 30px;">Close</button>
+                    </div>
+                `;
+                document.body.appendChild(successMsg);
+                
+                // Reset form
+                this.reset();
+                
+                // Reset button
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+            }, 1500);
+        });
+
+        // Animation on scroll
+        const animateElements = document.querySelectorAll('.animate-on-scroll');
+        
+        const checkScroll = () => {
+            animateElements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (elementTop < windowHeight - 100) {
+                    element.classList.add('visible');
+                }
+            });
+        };
+        
+        // Initial check
+        checkScroll();
+        
+        // Check on scroll
+        window.addEventListener('scroll', checkScroll);
+
+        // Add active class to current nav link
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('.nav-links a, .mobile-nav-links a');
+        
+        window.addEventListener('scroll', function() {
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= (sectionTop - 150)) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Add gold particle effect to hero section
+        function createGoldParticles() {
+            const hero = document.querySelector('.hero-luxury');
+            if (!hero) return;
+            
+            for (let i = 0; i < 15; i++) {
+                const particle = document.createElement('div');
+                particle.style.cssText = `
+                    position: absolute;
+                    width: ${Math.random() * 10 + 2}px;
+                    height: ${Math.random() * 10 + 2}px;
+                    background: var(--primary-gold);
+                    border-radius: 50%;
+                    opacity: ${Math.random() * 0.3 + 0.1};
+                    top: ${Math.random() * 100}%;
+                    left: ${Math.random() * 100}%;
+                    animation: floatParticle ${Math.random() * 20 + 10}s linear infinite;
+                    z-index: 1;
+                `;
+                
+                document.styleSheets[0].insertRule(`
+                    @keyframes floatParticle {
+                        0% { transform: translate(0, 0) rotate(0deg); opacity: 0; }
+                        10% { opacity: 0.3; }
+                        90% { opacity: 0.3; }
+                        100% { transform: translate(${Math.random() * 200 - 100}px, -100vh) rotate(${Math.random() * 360}deg); opacity: 0; }
+                    }
+                `, document.styleSheets[0].cssRules.length);
+                
+                hero.appendChild(particle);
+            }
+        }
+
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            createGoldParticles();
+            
+            // Set initial overflow for body
+            body.style.overflow = 'auto';
+        });
+
+        // Close mobile menu on escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && mobileMenu.classList.contains('active')) {
+                mobileMenu.classList.remove('active');
+                mobileToggle.innerHTML = '<i class="fas fa-bars"></i>';
+                body.style.overflow = 'auto';
+            }
+        });
+    </script>
+</body>
+</html>
