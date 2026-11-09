@@ -1,1887 +1,438 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rahimi Solution | Premium Healthcare & Business IT Solutions</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --primary-gold: #D4AF37;
-            --primary-dark: #0A0A0F;
-            --primary-navy: #1A1A2E;
-            --secondary-burgundy: #8B1E3F;
-            --accent-teal: #2EC4B6;
-            --light-cream: #F5F2E8;
-            --medium-gold: #B8860B;
-            --dark-gold: #8B7355;
-            --gradient-luxury: linear-gradient(135deg, var(--primary-gold) 0%, var(--medium-gold) 50%, var(--dark-gold) 100%);
-            --gradient-dark: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-navy) 100%);
-            --gradient-premium: linear-gradient(135deg, var(--primary-gold) 0%, var(--secondary-burgundy) 100%);
-            --shadow-soft: 0 10px 30px rgba(212, 175, 55, 0.1);
-            --shadow-hard: 0 25px 50px rgba(212, 175, 55, 0.2);
-            --shadow-luxury: 0 20px 40px rgba(139, 30, 63, 0.15);
-            --radius-elegant: 16px;
-            --radius-pill: 50px;
-            --transition-luxury: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-            overflow-x: hidden;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--primary-dark);
-            color: var(--light-cream);
-            line-height: 1.7;
-            overflow-x: hidden;
-        }
-
-        h1, h2, h3, h4, h5, .logo {
-            font-family: 'Playfair Display', serif;
-            font-weight: 700;
-        }
-
-        .container {
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* Luxury Header - FIXED FOR DESKTOP */
-        .luxury-header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 1000;
-            background: rgba(10, 10, 15, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
-            transition: var(--transition-luxury);
-        }
-
-        .luxury-header.scrolled {
-            padding: 10px 0;
-            box-shadow: var(--shadow-hard);
-        }
-
-        .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 25px 0;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            text-decoration: none;
-        }
-
-        .logo-icon {
-            width: 60px;
-            height: 60px;
-            background: var(--gradient-luxury);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 15px;
-            color: var(--primary-dark);
-            font-size: 28px;
-            font-weight: 900;
-            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
-        }
-
-        .logo-text {
-            font-size: 32px;
-            font-weight: 800;
-            background: var(--gradient-luxury);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            text-shadow: 0 2px 10px rgba(212, 175, 55, 0.2);
-        }
-
-        .logo-subtitle {
-            font-size: 12px;
-            color: var(--light-cream);
-            display: block;
-            font-weight: 400;
-            opacity: 0.8;
-            letter-spacing: 1px;
-            margin-top: 2px;
-        }
-
-        /* DESKTOP NAVIGATION - Always visible on desktop */
-        .desktop-nav {
-            display: flex;
-            align-items: center;
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 40px;
-            margin-right: 30px;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--light-cream);
-            font-weight: 500;
-            font-size: 16px;
-            padding: 8px 0;
-            position: relative;
-            transition: var(--transition-luxury);
-            letter-spacing: 0.5px;
-        }
-
-        .nav-links a:hover {
-            color: var(--primary-gold);
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--gradient-luxury);
-            transition: width 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        .luxury-cta {
-            background: var(--gradient-luxury);
-            color: var(--primary-dark);
-            padding: 14px 35px;
-            border-radius: var(--radius-pill);
-            text-decoration: none;
-            font-weight: 600;
-            transition: var(--transition-luxury);
-            box-shadow: var(--shadow-soft);
-            letter-spacing: 0.5px;
-            border: none;
-            cursor: pointer;
-        }
-
-        .luxury-cta:hover {
-            transform: translateY(-3px);
-            box-shadow: var(--shadow-hard);
-        }
-
-        /* MOBILE TOGGLE - Only visible on mobile */
-        .mobile-toggle {
-            display: none;
-            font-size: 24px;
-            cursor: pointer;
-            color: var(--primary-gold);
-            background: none;
-            border: none;
-            z-index: 1001;
-        }
-
-        /* MOBILE MENU - Hidden on desktop, visible on mobile when active */
-        .mobile-menu {
-            display: none; /* Hidden by default on all screens */
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-            background: rgba(10, 10, 15, 0.98);
-            padding: 100px 30px 30px;
-            transform: translateX(-100%);
-            opacity: 0;
-            transition: var(--transition-luxury);
-            z-index: 999;
-            backdrop-filter: blur(20px);
-            overflow-y: auto;
-        }
-
-        .mobile-menu.active {
-            transform: translateX(0);
-            opacity: 1;
-        }
-
-        .mobile-nav-links {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 25px;
-        }
-
-        .mobile-nav-links a {
-            display: block;
-            padding: 18px 0;
-            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
-            text-decoration: none;
-            color: var(--light-cream);
-            font-weight: 600;
-            font-size: 18px;
-            transition: var(--transition-luxury);
-        }
-
-        .mobile-nav-links a:hover {
-            color: var(--primary-gold);
-            padding-left: 15px;
-        }
-
-        .mobile-menu .luxury-cta {
-            margin-top: 40px;
-            display: block;
-            text-align: center;
-            width: 100%;
-        }
-
-        /* Luxury Hero Section */
-        .hero-luxury {
-            padding: 200px 0 150px;
-            background: var(--gradient-dark);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero-luxury::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: 
-                radial-gradient(circle at 20% 30%, rgba(212, 175, 55, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 70%, rgba(139, 30, 63, 0.1) 0%, transparent 50%);
-        }
-
-        .hero-content {
-            max-width: 800px;
-            position: relative;
-            z-index: 10;
-        }
-
-        .hero-badge {
-            display: inline-block;
-            background: rgba(212, 175, 55, 0.1);
-            color: var(--primary-gold);
-            padding: 12px 25px;
-            border-radius: var(--radius-pill);
-            font-weight: 600;
-            margin-bottom: 30px;
-            border: 1px solid rgba(212, 175, 55, 0.3);
-            backdrop-filter: blur(10px);
-            letter-spacing: 1.5px;
-            font-size: 14px;
-        }
-
-        .hero-title {
-            font-size: 3.8rem;
-            line-height: 1.2;
-            margin-bottom: 25px;
-            color: var(--light-cream);
-        }
-
-        .hero-title span {
-            background: var(--gradient-luxury);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-
-        .hero-description {
-            font-size: 1.2rem;
-            color: rgba(245, 242, 232, 0.8);
-            margin-bottom: 50px;
-            max-width: 700px;
-            line-height: 1.8;
-        }
-
-        .hero-buttons {
-            display: flex;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
-
-        .btn-luxury {
-            background: var(--gradient-luxury);
-            color: var(--primary-dark);
-            padding: 16px 40px;
-            border-radius: var(--radius-pill);
-            text-decoration: none;
-            font-weight: 600;
-            transition: var(--transition-luxury);
-            border: none;
-            cursor: pointer;
-            box-shadow: var(--shadow-soft);
-            font-size: 16px;
-        }
-
-        .btn-luxury:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-hard);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: var(--primary-gold);
-            padding: 16px 40px;
-            border-radius: var(--radius-pill);
-            text-decoration: none;
-            font-weight: 600;
-            transition: var(--transition-luxury);
-            border: 2px solid var(--primary-gold);
-        }
-
-        .btn-secondary:hover {
-            background: rgba(212, 175, 55, 0.1);
-            transform: translateY(-5px);
-        }
-
-        /* About Section */
-        .section {
-            padding: 120px 0;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 80px;
-        }
-
-        .section-title h2 {
-            font-size: 3.2rem;
-            margin-bottom: 20px;
-            position: relative;
-            display: inline-block;
-            color: var(--light-cream);
-        }
-
-        .section-title h2::after {
-            content: '';
-            position: absolute;
-            width: 100px;
-            height: 3px;
-            background: var(--gradient-luxury);
-            bottom: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-            border-radius: 2px;
-        }
-
-        .section-title p {
-            color: rgba(245, 242, 232, 0.8);
-            font-size: 1.1rem;
-            max-width: 700px;
-            margin: 30px auto 0;
-            line-height: 1.8;
-        }
-
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 80px;
-            align-items: center;
-        }
-
-        .about-text h3 {
-            font-size: 2rem;
-            margin-bottom: 25px;
-            color: var(--primary-gold);
-        }
-
-        .about-text p {
-            margin-bottom: 25px;
-            color: rgba(245, 242, 232, 0.8);
-            line-height: 1.8;
-        }
-
-        .vision-mission {
-            background: rgba(26, 26, 46, 0.7);
-            color: var(--light-cream);
-            padding: 70px;
-            border-radius: var(--radius-elegant);
-            margin-top: 60px;
-            border: 1px solid rgba(212, 175, 55, 0.2);
-            backdrop-filter: blur(10px);
-        }
-
-        .vision-mission h3 {
-            color: var(--primary-gold);
-            margin-bottom: 40px;
-            font-size: 2.2rem;
-            text-align: center;
-        }
-
-        .vision-mission-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 50px;
-        }
-
-        .vm-item {
-            padding: 40px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: var(--radius-elegant);
-            backdrop-filter: blur(5px);
-            border: 1px solid rgba(212, 175, 55, 0.1);
-            transition: var(--transition-luxury);
-        }
-
-        .vm-item:hover {
-            border-color: var(--primary-gold);
-            transform: translateY(-5px);
-        }
-
-        .vm-item h4 {
-            color: var(--light-cream);
-            font-size: 1.5rem;
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-        }
-
-        .vm-item h4 i {
-            margin-right: 15px;
-            color: var(--primary-gold);
-            font-size: 24px;
-        }
-
-        /* Luxury Services */
-        .services-luxury {
-            background: var(--primary-navy);
-            position: relative;
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 40px;
-        }
-
-        .service-card {
-            background: rgba(10, 10, 15, 0.7);
-            border-radius: var(--radius-elegant);
-            padding: 50px 40px;
-            box-shadow: var(--shadow-soft);
-            transition: var(--transition-luxury);
-            position: relative;
-            overflow: hidden;
-            border: 1px solid rgba(212, 175, 55, 0.1);
-            backdrop-filter: blur(10px);
-        }
-
-        .service-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--gradient-luxury);
-            opacity: 0;
-            transition: opacity 0.6s ease;
-            z-index: -1;
-        }
-
-        .service-card:hover::before {
-            opacity: 0.05;
-        }
-
-        .service-card:hover {
-            transform: translateY(-15px);
-            border-color: var(--primary-gold);
-            box-shadow: var(--shadow-hard);
-        }
-
-        .service-icon {
-            width: 80px;
-            height: 80px;
-            background: rgba(212, 175, 55, 0.1);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 30px;
-            color: var(--primary-gold);
-            font-size: 32px;
-            border: 2px solid rgba(212, 175, 55, 0.3);
-        }
-
-        .service-card h3 {
-            font-size: 1.6rem;
-            margin-bottom: 20px;
-            color: var(--light-cream);
-        }
-
-        .service-card p {
-            color: rgba(245, 242, 232, 0.8);
-            margin-bottom: 25px;
-            line-height: 1.7;
-        }
-
-        .service-features {
-            list-style: none;
-            margin-top: 25px;
-        }
-
-        .service-features li {
-            padding: 10px 0;
-            color: rgba(245, 242, 232, 0.8);
-            position: relative;
-            padding-left: 30px;
-            line-height: 1.6;
-        }
-
-        .service-features li::before {
-            content: '✓';
-            position: absolute;
-            left: 0;
-            color: var(--primary-gold);
-            font-weight: bold;
-            font-size: 18px;
-        }
-
-        /* Why Choose Us - Luxury */
-        .why-luxury {
-            background: var(--gradient-dark);
-        }
-
-        .reasons-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 35px;
-        }
-
-        .reason-card {
-            text-align: center;
-            padding: 50px 30px;
-            background: rgba(26, 26, 46, 0.7);
-            border-radius: var(--radius-elegant);
-            transition: var(--transition-luxury);
-            border: 1px solid rgba(212, 175, 55, 0.1);
-            backdrop-filter: blur(10px);
-        }
-
-        .reason-card:hover {
-            background: rgba(212, 175, 55, 0.05);
-            transform: translateY(-10px);
-            border-color: var(--primary-gold);
-            box-shadow: var(--shadow-hard);
-        }
-
-        .reason-icon {
-            width: 70px;
-            height: 70px;
-            background: var(--gradient-luxury);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 25px;
-            color: var(--primary-dark);
-            font-size: 28px;
-            transition: var(--transition-luxury);
-        }
-
-        .reason-card:hover .reason-icon {
-            transform: rotate(360deg) scale(1.1);
-        }
-
-        .reason-card h4 {
-            font-size: 1.4rem;
-            margin-bottom: 15px;
-            color: var(--light-cream);
-        }
-
-        .reason-card p {
-            color: rgba(245, 242, 232, 0.8);
-        }
-
-        /* Industries - Luxury */
-        .industries-luxury {
-            background: var(--primary-navy);
-            position: relative;
-        }
-
-        .industries-luxury::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: radial-gradient(circle at center, rgba(212, 175, 55, 0.05) 0%, transparent 70%);
-        }
-
-        .industries-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 35px;
-            text-align: center;
-            position: relative;
-            z-index: 10;
-        }
-
-        .industry-item {
-            padding: 40px 25px;
-            background: rgba(10, 10, 15, 0.7);
-            border-radius: var(--radius-elegant);
-            backdrop-filter: blur(10px);
-            transition: var(--transition-luxury);
-            border: 1px solid rgba(212, 175, 55, 0.1);
-        }
-
-        .industry-item:hover {
-            background: rgba(212, 175, 55, 0.05);
-            transform: translateY(-10px);
-            border-color: var(--primary-gold);
-            box-shadow: var(--shadow-luxury);
-        }
-
-        .industry-item i {
-            font-size: 48px;
-            margin-bottom: 25px;
-            color: var(--primary-gold);
-            transition: var(--transition-luxury);
-        }
-
-        .industry-item:hover i {
-            transform: scale(1.2);
-        }
-
-        .industry-item h4 {
-            font-size: 1.3rem;
-            margin-bottom: 10px;
-            color: var(--light-cream);
-        }
-
-        .industry-item p {
-            color: rgba(245, 242, 232, 0.8);
-            font-size: 14px;
-        }
-
-        /* Future Plans - Luxury */
-        .future-plans-luxury {
-            background: var(--gradient-dark);
-        }
-
-        .plans-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
-            gap: 35px;
-        }
-
-        .plan-card {
-            background: rgba(26, 26, 46, 0.7);
-            padding: 50px 35px;
-            border-radius: var(--radius-elegant);
-            text-align: center;
-            box-shadow: var(--shadow-soft);
-            transition: var(--transition-luxury);
-            position: relative;
-            overflow: hidden;
-            border: 1px solid rgba(212, 175, 55, 0.1);
-            backdrop-filter: blur(10px);
-        }
-
-        .plan-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 5px;
-            background: var(--gradient-luxury);
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.6s ease;
-        }
-
-        .plan-card:hover::before {
-            transform: scaleX(1);
-        }
-
-        .plan-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--primary-gold);
-            box-shadow: var(--shadow-hard);
-        }
-
-        .plan-icon {
-            width: 80px;
-            height: 80px;
-            background: rgba(212, 175, 55, 0.1);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 30px;
-            color: var(--primary-gold);
-            font-size: 32px;
-            border: 2px solid rgba(212, 175, 55, 0.3);
-            transition: var(--transition-luxury);
-        }
-
-        .plan-card:hover .plan-icon {
-            background: var(--gradient-luxury);
-            color: var(--primary-dark);
-            transform: rotateY(180deg);
-        }
-
-        .plan-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 20px;
-            color: var(--light-cream);
-        }
-
-        .plan-card p {
-            color: rgba(245, 242, 232, 0.8);
-            line-height: 1.7;
-        }
-
-        /* Contact - Luxury */
-        .contact-luxury {
-            background: var(--primary-navy);
-        }
-
-        .contact-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 80px;
-            align-items: start;
-        }
-
-        .contact-info h3 {
-            font-size: 2.2rem;
-            margin-bottom: 25px;
-            color: var(--primary-gold);
-        }
-
-        .contact-details {
-            margin-top: 50px;
-        }
-
-        .contact-detail {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: 35px;
-        }
-
-        .contact-icon {
-            width: 60px;
-            height: 60px;
-            background: rgba(212, 175, 55, 0.1);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 25px;
-            color: var(--primary-gold);
-            font-size: 24px;
-            flex-shrink: 0;
-            border: 2px solid rgba(212, 175, 55, 0.3);
-            transition: var(--transition-luxury);
-        }
-
-        .contact-detail:hover .contact-icon {
-            background: var(--gradient-luxury);
-            color: var(--primary-dark);
-            transform: rotateY(180deg);
-        }
-
-        .contact-text h4 {
-            font-size: 1.3rem;
-            margin-bottom: 8px;
-            color: var(--light-cream);
-        }
-
-        .contact-text a {
-            color: var(--primary-gold);
-            text-decoration: none;
-            transition: var(--transition-luxury);
-            display: block;
-            margin-bottom: 5px;
-        }
-
-        .contact-text a:hover {
-            color: var(--light-cream);
-            padding-left: 5px;
-        }
-
-        .contact-form {
-            background: rgba(10, 10, 15, 0.7);
-            padding: 50px;
-            border-radius: var(--radius-elegant);
-            box-shadow: var(--shadow-hard);
-            border: 1px solid rgba(212, 175, 55, 0.2);
-            backdrop-filter: blur(10px);
-        }
-
-        .form-group {
-            margin-bottom: 30px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 10px;
-            font-weight: 600;
-            color: var(--primary-gold);
-            font-size: 15px;
-            letter-spacing: 0.5px;
-        }
-
-        .form-control {
-            width: 100%;
-            padding: 18px 20px;
-            background: rgba(245, 242, 232, 0.05);
-            border: 1px solid rgba(212, 175, 55, 0.3);
-            border-radius: 10px;
-            color: var(--light-cream);
-            font-family: 'Inter', sans-serif;
-            font-size: 16px;
-            transition: var(--transition-luxury);
-        }
-
-        .form-control:focus {
-            outline: none;
-            border-color: var(--primary-gold);
-            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
-            background: rgba(245, 242, 232, 0.08);
-        }
-
-        textarea.form-control {
-            min-height: 160px;
-            resize: vertical;
-        }
-
-        /* Luxury Footer */
-        .luxury-footer {
-            background: var(--primary-dark);
-            color: var(--light-cream);
-            padding: 100px 0 40px;
-            border-top: 1px solid rgba(212, 175, 55, 0.2);
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 60px;
-            margin-bottom: 70px;
-        }
-
-        .footer-logo {
-            font-size: 32px;
-            font-weight: 800;
-            background: var(--gradient-luxury);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            margin-bottom: 20px;
-            display: inline-block;
-        }
-
-        .footer-about p {
-            color: rgba(245, 242, 232, 0.8);
-            margin-bottom: 30px;
-            line-height: 1.8;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 15px;
-        }
-
-        .social-link {
-            width: 45px;
-            height: 45px;
-            background: rgba(212, 175, 55, 0.1);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--primary-gold);
-            text-decoration: none;
-            transition: var(--transition-luxury);
-            border: 1px solid rgba(212, 175, 55, 0.3);
-        }
-
-        .social-link:hover {
-            background: var(--gradient-luxury);
-            color: var(--primary-dark);
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-soft);
-        }
-
-        .footer-heading {
-            font-size: 1.4rem;
-            margin-bottom: 30px;
-            position: relative;
-            padding-bottom: 15px;
-            color: var(--light-cream);
-        }
-
-        .footer-heading::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 50px;
-            height: 3px;
-            background: var(--gradient-luxury);
-        }
-
-        .footer-links ul {
-            list-style: none;
-        }
-
-        .footer-links li {
-            margin-bottom: 15px;
-        }
-
-        .footer-links a {
-            color: rgba(245, 242, 232, 0.8);
-            text-decoration: none;
-            transition: var(--transition-luxury);
-            display: inline-block;
-        }
-
-        .footer-links a:hover {
-            color: var(--primary-gold);
-            padding-left: 10px;
-        }
-
-        .copyright {
-            text-align: center;
-            padding-top: 50px;
-            border-top: 1px solid rgba(212, 175, 55, 0.1);
-            color: rgba(245, 242, 232, 0.6);
-            font-size: 14px;
-            letter-spacing: 0.5px;
-        }
-
-        /* RESPONSIVE DESIGN - FIXED */
-        /* Tablet: Show hamburger menu below 1024px */
-        @media (max-width: 1024px) {
-            .nav-links {
-                gap: 30px;
-                margin-right: 20px;
-            }
-            
-            .nav-links a {
-                font-size: 15px;
-            }
-            
-            .luxury-cta {
-                padding: 12px 25px;
-                font-size: 14px;
-            }
-        }
-
-        /* Mobile: Show hamburger menu, hide desktop nav */
-        @media (max-width: 992px) {
-            .desktop-nav {
-                display: none;
-            }
-            
-            .mobile-toggle {
-                display: block;
-            }
-            
-            .mobile-menu {
-                display: block; /* Show mobile menu container on mobile */
-            }
-            
-            .hero-title {
-                font-size: 3rem;
-            }
-            
-            .about-content {
-                grid-template-columns: 1fr;
-                gap: 50px;
-            }
-            
-            .vision-mission-grid {
-                grid-template-columns: 1fr;
-                gap: 30px;
-            }
-            
-            .contact-container {
-                grid-template-columns: 1fr;
-                gap: 50px;
-            }
-        }
-
-        /* Desktop: Hide mobile menu completely */
-        @media (min-width: 993px) {
-            .mobile-menu {
-                display: none !important; /* Force hide on desktop */
-            }
-        }
-
-        @media (max-width: 768px) {
-            .hero-luxury {
-                padding: 160px 0 100px;
-            }
-            
-            .hero-title {
-                font-size: 2.5rem;
-            }
-            
-            .section-title h2 {
-                font-size: 2.5rem;
-            }
-            
-            .hero-buttons {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            
-            .btn-luxury, .btn-secondary {
-                width: 100%;
-                text-align: center;
-            }
-            
-            .service-card, .reason-card, .industry-item, .plan-card {
-                padding: 40px 30px;
-            }
-            
-            .vision-mission, .contact-form {
-                padding: 40px 30px;
-            }
-            
-            .mobile-menu {
-                padding: 120px 20px 40px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .logo-icon {
-                width: 50px;
-                height: 50px;
-                font-size: 24px;
-            }
-            
-            .logo-text {
-                font-size: 26px;
-            }
-            
-            .logo-subtitle {
-                font-size: 10px;
-            }
-            
-            .hero-title {
-                font-size: 2rem;
-            }
-            
-            .section {
-                padding: 80px 0;
-            }
-        }
-
-        /* Animation Classes */
-        .animate-on-scroll {
-            opacity: 0;
-            transform: translateY(40px);
-            transition: var(--transition-luxury);
-        }
-
-        .animate-on-scroll.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#101a2b">
+  <meta name="description" content="Rahimi Solution delivers thoughtful healthcare technology and business IT solutions built around people, security, and lasting results.">
+  <title>Rahimi Solution | Healthcare & Business Technology</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://images.unsplash.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <style>
+    :root {
+      --ink: #101a2b;
+      --ink-soft: #1b2a40;
+      --paper: #f7f8f6;
+      --white: #fff;
+      --muted: #627084;
+      --teal: #18a999;
+      --teal-dark: #087f75;
+      --gold: #d7ad62;
+      --line: rgba(16, 26, 43, .1);
+      --shadow: 0 24px 70px rgba(16, 26, 43, .12);
+      --radius: 24px;
+      --ease: cubic-bezier(.2,.75,.25,1);
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+    body { margin: 0; color: var(--ink); background: var(--paper); font-family: 'DM Sans', sans-serif; line-height: 1.65; overflow-x: hidden; }
+    body.menu-open { overflow: hidden; }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; }
+    button, input, textarea, select { font: inherit; }
+    .container { width: min(1160px, calc(100% - 48px)); margin-inline: auto; }
+    .eyebrow { display: inline-flex; gap: 10px; align-items: center; color: var(--teal-dark); font-size: .76rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; }
+    .eyebrow::before { content: ''; width: 26px; height: 2px; background: var(--teal); }
+    .section { padding: 108px 0; }
+    .section-heading { max-width: 700px; margin-bottom: 48px; }
+    .section-heading h2 { margin: 13px 0 14px; font: 800 clamp(2.2rem, 4vw, 3.45rem)/1.12 'Manrope', sans-serif; letter-spacing: -.055em; }
+    .section-heading p { max-width: 620px; margin: 0; color: var(--muted); font-size: 1.05rem; }
+    .site-header { position: fixed; inset: 0 0 auto; z-index: 20; transition: background .3s, box-shadow .3s; }
+    .site-header.scrolled { background: rgba(255,255,255,.92); box-shadow: 0 8px 30px rgba(16,26,43,.08); backdrop-filter: blur(16px); }
+    .nav { min-height: 82px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .brand { display: inline-flex; align-items: center; gap: 12px; text-decoration: none; font: 800 1.05rem 'Manrope',sans-serif; letter-spacing: -.04em; }
+    .brand-mark { width: 42px; height: 42px; display: grid; place-items: center; border-radius: 14px; color: white; background: linear-gradient(145deg,var(--teal),#087c83); box-shadow: 0 9px 22px rgba(24,169,153,.25); }
+    .brand small { display: block; color: var(--muted); font: 600 .65rem 'DM Sans',sans-serif; letter-spacing: .12em; text-transform: uppercase; }
+    .nav-links { display: flex; align-items: center; gap: 32px; list-style: none; margin: 0; padding: 0; }
+    .nav-links a { color: #435166; text-decoration: none; font-size: .9rem; font-weight: 600; transition: color .2s; }
+    .nav-links a:hover { color: var(--teal-dark); }
+    .button { display: inline-flex; min-height: 50px; align-items: center; justify-content: center; gap: 10px; padding: 0 22px; border: 0; border-radius: 999px; background: var(--teal); color: white; text-decoration: none; font-size: .9rem; font-weight: 700; box-shadow: 0 10px 24px rgba(24,169,153,.22); transition: transform .25s var(--ease), background .25s, box-shadow .25s; cursor: pointer; }
+    .button:hover { transform: translateY(-3px); background: var(--teal-dark); box-shadow: 0 15px 32px rgba(24,169,153,.28); }
+    .button-dark { background: var(--ink); box-shadow: none; }
+    .button-dark:hover { background: #263b58; }
+    .menu-toggle { display: none; width: 44px; height: 44px; border: 1px solid var(--line); border-radius: 50%; background: white; color: var(--ink); cursor: pointer; }
+
+    .hero { position: relative; min-height: 740px; display: grid; align-items: center; padding: 130px 0 90px; color: white; background: var(--ink); isolation: isolate; overflow: hidden; }
+    .hero::before { position: absolute; z-index: -2; inset: 0; content: ''; background: linear-gradient(90deg,rgba(13,25,42,.96) 0%,rgba(13,25,42,.88) 45%,rgba(13,25,42,.30) 100%), url('https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=2000&q=85') center 42%/cover; }
+    .hero::after { position: absolute; z-index: -1; width: 560px; height: 560px; right: -170px; bottom: -240px; content: ''; border: 1px solid rgba(255,255,255,.15); border-radius: 50%; box-shadow: 0 0 0 48px rgba(255,255,255,.025), 0 0 0 100px rgba(255,255,255,.02); }
+    .hero-grid { display: grid; grid-template-columns: 1.05fr .95fr; align-items: center; gap: 60px; }
+    .hero-copy { position: relative; z-index: 2; max-width: 650px; animation: rise-in .8s var(--ease) both; }
+    .hero .eyebrow { color: #a7e7dd; }
+    .hero h1 { margin: 22px 0; font: 800 clamp(3rem, 6vw, 5.25rem)/1.04 'Manrope',sans-serif; letter-spacing: -.065em; }
+    .hero h1 span { color: #8be0d4; }
+    .hero-copy > p { max-width: 570px; margin: 0 0 30px; color: rgba(255,255,255,.77); font-size: 1.1rem; }
+    .hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; }
+    .button-outline { border: 1px solid rgba(255,255,255,.42); background: rgba(255,255,255,.08); box-shadow: none; backdrop-filter: blur(10px); }
+    .button-outline:hover { background: rgba(255,255,255,.16); }
+    .hero-note { display: flex; align-items: center; gap: 12px; margin-top: 34px; color: rgba(255,255,255,.7); font-size: .85rem; }
+    .hero-note i { color: #8be0d4; }
+    .hero-visual { position: relative; min-height: 440px; perspective: 1200px; animation: rise-in .9s .12s var(--ease) both; }
+    .hero-photo { position: absolute; inset: 14px 35px 20px 20px; overflow: hidden; border: 1px solid rgba(255,255,255,.38); border-radius: 36px; box-shadow: 0 35px 80px rgba(0,0,0,.4); transform: rotateY(-8deg) rotateX(3deg); transition: transform .6s var(--ease); }
+    .hero-visual:hover .hero-photo { transform: rotateY(-2deg) rotateX(0) translateY(-8px); }
+    .hero-photo img { width: 100%; height: 100%; object-fit: cover; }
+    .hero-photo::after { position: absolute; inset: 40% 0 0; content: ''; background: linear-gradient(transparent,rgba(9,20,34,.5)); }
+    .float-card { position: absolute; z-index: 2; display: flex; align-items: center; gap: 12px; padding: 15px 18px; border: 1px solid rgba(255,255,255,.7); border-radius: 17px; color: var(--ink); background: rgba(255,255,255,.94); box-shadow: 0 20px 45px rgba(0,0,0,.2); animation: float 5s ease-in-out infinite; }
+    .float-card i { width: 40px; height: 40px; display: grid; place-items: center; border-radius: 12px; color: var(--teal-dark); background: #e4f6f2; }
+    .float-card strong { display: block; font: 700 .88rem 'Manrope',sans-serif; }
+    .float-card small { display: block; color: var(--muted); font-size: .72rem; }
+    .float-card.one { top: 54px; left: -15px; }
+    .float-card.two { right: 0; bottom: 40px; animation-delay: -2s; }
+
+    .trust-strip { position: relative; z-index: 3; margin-top: -1px; background: white; border-bottom: 1px solid var(--line); }
+    .trust-inner { display: grid; grid-template-columns: repeat(4,1fr); padding: 25px 0; }
+    .trust-item { display: flex; justify-content: center; align-items: center; gap: 12px; color: #536176; font-size: .84rem; font-weight: 700; }
+    .trust-item + .trust-item { border-left: 1px solid var(--line); }
+    .trust-item i { color: var(--teal); font-size: 1.1rem; }
+
+    .about-grid { display: grid; grid-template-columns: .95fr 1.05fr; align-items: center; gap: 75px; }
+    .about-visual { position: relative; min-height: 470px; perspective: 1000px; }
+    .about-image { position: absolute; inset: 0 38px 35px 0; overflow: hidden; border-radius: var(--radius); box-shadow: var(--shadow); transform: rotateY(5deg); transition: transform .5s var(--ease); }
+    .about-visual:hover .about-image { transform: rotateY(0) translateY(-5px); }
+    .about-image img { width: 100%; height: 100%; object-fit: cover; }
+    .about-stamp { position: absolute; right: 0; bottom: 0; width: 175px; padding: 22px; border: 7px solid var(--paper); border-radius: 22px; color: white; background: var(--ink); box-shadow: var(--shadow); }
+    .about-stamp strong { display: block; color: #8be0d4; font: 800 1.8rem 'Manrope',sans-serif; }
+    .about-stamp span { font-size: .82rem; }
+    .about-copy h2 { margin: 14px 0 20px; font: 800 clamp(2.2rem,4vw,3.3rem)/1.12 'Manrope',sans-serif; letter-spacing: -.055em; }
+    .about-copy > p { color: var(--muted); }
+    .check-list { display: grid; gap: 14px; list-style: none; padding: 0; margin: 26px 0 32px; }
+    .check-list li { display: flex; align-items: flex-start; gap: 12px; color: #37465b; font-weight: 600; }
+    .check-list i { margin-top: 5px; color: var(--teal); }
+    .values { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 28px; }
+    .value-card { padding: 20px; border: 1px solid var(--line); border-radius: 16px; background: white; }
+    .value-card i { color: var(--teal-dark); }
+    .value-card h3 { margin: 10px 0 5px; font: 700 1rem 'Manrope',sans-serif; }
+    .value-card p { margin: 0; color: var(--muted); font-size: .86rem; }
+
+    .services { background: #edf2f2; }
+    .center-heading { margin-inline: auto; text-align: center; }
+    .center-heading p { margin-inline: auto; }
+    .center-heading .eyebrow { justify-content: center; }
+    .services-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 22px; perspective: 1200px; }
+    .service-card { position: relative; min-height: 300px; padding: 32px; border: 1px solid rgba(16,26,43,.07); border-radius: 22px; background: white; box-shadow: 0 10px 30px rgba(16,26,43,.045); transform-style: preserve-3d; transition: transform .4s var(--ease), box-shadow .4s, border-color .4s; }
+    .service-card:hover { transform: translateY(-9px) rotateX(2deg) rotateY(-2deg); border-color: rgba(24,169,153,.35); box-shadow: 0 25px 55px rgba(16,26,43,.12); }
+    .service-icon { width: 56px; height: 56px; display: grid; place-items: center; border-radius: 17px; color: var(--teal-dark); background: #e5f6f2; font-size: 1.35rem; box-shadow: 0 8px 18px rgba(24,169,153,.12); }
+    .service-card h3 { margin: 23px 0 10px; font: 700 1.17rem 'Manrope',sans-serif; letter-spacing: -.02em; }
+    .service-card p { margin: 0; color: var(--muted); font-size: .92rem; }
+    .card-arrow { position: absolute; right: 28px; bottom: 27px; color: var(--teal-dark); transition: transform .25s; }
+    .service-card:hover .card-arrow { transform: translateX(5px); }
+
+    .feature-band { position: relative; color: white; background: var(--ink); overflow: hidden; }
+    .feature-band::before { position: absolute; top: -220px; right: -90px; width: 500px; height: 500px; content: ''; border: 1px solid rgba(139,224,212,.18); border-radius: 50%; box-shadow: 0 0 0 55px rgba(139,224,212,.03), 0 0 0 110px rgba(139,224,212,.025); }
+    .feature-grid { position: relative; display: grid; grid-template-columns: .9fr 1.1fr; gap: 80px; align-items: center; }
+    .feature-copy h2 { margin: 15px 0; font: 800 clamp(2.2rem,4vw,3.2rem)/1.12 'Manrope',sans-serif; letter-spacing: -.05em; }
+    .feature-copy p { color: rgba(255,255,255,.68); }
+    .feature-copy .eyebrow { color: #8be0d4; }
+    .feature-list { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+    .feature-item { min-height: 145px; padding: 24px; border: 1px solid rgba(255,255,255,.13); border-radius: 18px; background: rgba(255,255,255,.055); backdrop-filter: blur(10px); transition: transform .3s, background .3s; }
+    .feature-item:hover { transform: translateY(-5px); background: rgba(255,255,255,.1); }
+    .feature-item i { color: #8be0d4; font-size: 1.25rem; }
+    .feature-item h3 { margin: 12px 0 4px; font: 700 .98rem 'Manrope',sans-serif; }
+    .feature-item p { margin: 0; color: rgba(255,255,255,.63); font-size: .82rem; }
+
+    .industries-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 18px; }
+    .industry { min-height: 190px; padding: 26px 20px; border: 1px solid var(--line); border-radius: 20px; background: white; text-align: center; transition: transform .3s var(--ease), box-shadow .3s; }
+    .industry:hover { transform: translateY(-7px); box-shadow: var(--shadow); }
+    .industry i { display: block; margin-bottom: 16px; color: var(--teal-dark); font-size: 1.8rem; }
+    .industry h3 { margin: 0 0 6px; font: 700 1rem 'Manrope',sans-serif; }
+    .industry p { margin: 0; color: var(--muted); font-size: .82rem; }
+
+    .contact { background: #edf2f2; }
+    .contact-grid { display: grid; grid-template-columns: .85fr 1.15fr; align-items: start; gap: 65px; }
+    .contact-copy h2 { margin: 15px 0; font: 800 clamp(2.2rem,4vw,3.3rem)/1.1 'Manrope',sans-serif; letter-spacing: -.055em; }
+    .contact-copy > p { color: var(--muted); }
+    .contact-note { margin-top: 30px; padding: 20px; border-left: 3px solid var(--teal); border-radius: 0 14px 14px 0; background: white; color: #526176; font-size: .9rem; }
+    .contact-form { padding: 34px; border: 1px solid var(--line); border-radius: 22px; background: white; box-shadow: 0 20px 50px rgba(16,26,43,.07); }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .field { margin-bottom: 17px; }
+    .field label { display: block; margin-bottom: 7px; color: #38465a; font-size: .83rem; font-weight: 700; }
+    .field input, .field textarea, .field select { width: 100%; padding: 13px 14px; border: 1px solid #dfe5e9; border-radius: 11px; outline: none; color: var(--ink); background: #fbfcfc; transition: border-color .2s, box-shadow .2s; }
+    .field input:focus, .field textarea:focus, .field select:focus { border-color: var(--teal); box-shadow: 0 0 0 3px rgba(24,169,153,.12); }
+    .field textarea { min-height: 120px; resize: vertical; }
+    .form-status { min-height: 24px; margin: 12px 0 0; color: var(--teal-dark); font-size: .9rem; }
+
+    .footer { padding: 66px 0 25px; color: rgba(255,255,255,.72); background: #0c1421; }
+    .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 50px; padding-bottom: 45px; }
+    .footer .brand { color: white; }
+    .footer-about p { max-width: 370px; color: rgba(255,255,255,.58); font-size: .9rem; }
+    .footer h3 { margin: 0 0 15px; color: white; font: 700 .95rem 'Manrope',sans-serif; }
+    .footer-links { display: grid; align-content: start; gap: 10px; }
+    .footer-links a { width: fit-content; color: rgba(255,255,255,.62); font-size: .88rem; text-decoration: none; transition: color .2s; }
+    .footer-links a:hover { color: #8be0d4; }
+    .footer-bottom { display: flex; justify-content: space-between; gap: 20px; padding-top: 22px; border-top: 1px solid rgba(255,255,255,.1); color: rgba(255,255,255,.45); font-size: .8rem; }
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s var(--ease), transform .7s var(--ease); }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    @keyframes rise-in { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+
+    @media (max-width: 900px) {
+      .nav-links { gap: 18px; }
+      .nav > .button { display: none; }
+      .hero-grid { grid-template-columns: 1fr  .8fr; gap: 25px; }
+      .hero-visual { min-height: 370px; }
+      .services-grid { grid-template-columns: repeat(2,1fr); }
+      .about-grid, .feature-grid, .contact-grid { gap: 42px; }
+      .industries-grid { grid-template-columns: repeat(2,1fr); }
+    }
+    @media (max-width: 700px) {
+      .container { width: min(100% - 36px, 560px); }
+      .section { padding: 76px 0; }
+      .nav { min-height: 72px; }
+      .menu-toggle { display: grid; place-items: center; z-index: 22; }
+      .nav-links { position: fixed; inset: 0; display: flex; flex-direction: column; align-items: stretch; justify-content: center; gap: 22px; padding: 90px 36px 36px; background: rgba(247,248,246,.98); opacity: 0; visibility: hidden; transform: translateY(-10px); transition: .25s; }
+      .nav-links.open { opacity: 1; visibility: visible; transform: none; }
+      .nav-links a { display: block; font: 700 1.5rem 'Manrope',sans-serif; }
+      .hero { min-height: auto; padding: 120px 0 65px; }
+      .hero::before { background: linear-gradient(90deg,rgba(13,25,42,.94),rgba(13,25,42,.78)), url('https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1400&q=80') center/cover; }
+      .hero-grid { grid-template-columns: 1fr; gap: 26px; }
+      .hero h1 { font-size: clamp(2.9rem,12vw,4.4rem); }
+      .hero-copy > p { font-size: 1rem; }
+      .hero-visual { min-height: 300px; margin: 0 5px; }
+      .hero-photo { inset: 4px 20px 12px 12px; border-radius: 25px; }
+      .float-card.one { top: 25px; left: -5px; }
+      .float-card.two { right: -5px; bottom: 20px; }
+      .trust-inner { grid-template-columns: 1fr 1fr; row-gap: 18px; padding: 23px 0; }
+      .trust-item { justify-content: flex-start; font-size: .76rem; }
+      .trust-item + .trust-item { border: 0; }
+      .about-grid, .feature-grid, .contact-grid { grid-template-columns: 1fr; }
+      .about-visual { min-height: 340px; order: 2; }
+      .about-image { inset: 0 25px 25px 0; }
+      .about-copy { order: 1; }
+      .services-grid { grid-template-columns: 1fr; }
+      .service-card { min-height: 250px; }
+      .feature-list { gap: 10px; }
+      .feature-item { min-height: 138px; padding: 18px; }
+      .form-row { grid-template-columns: 1fr; gap: 0; }
+      .contact-form { padding: 24px 19px; }
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 30px; }
+      .footer-about { grid-column: 1/-1; }
+      .footer-bottom { flex-direction: column; }
+    }
+    @media (max-width: 390px) {
+      .hero-actions .button { width: 100%; }
+      .values, .feature-list { grid-template-columns: 1fr; }
+      .industries-grid { gap: 10px; }
+      .industry { padding: 22px 12px; }
+      .float-card { padding: 10px 12px; }
+      .float-card i { width: 34px; height: 34px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+      .reveal { opacity: 1; transform: none; }
+    }
+  </style>
 </head>
 <body>
-    <!-- Luxury Header -->
-    <header class="luxury-header" id="header">
-        <div class="container">
-            <div class="nav-container">
-                <a href="#" class="logo">
-                    <div class="logo-icon">RS</div>
-                    <div>
-                        <div class="logo-text">Rahimi Solution</div>
-                        <span class="logo-subtitle">PREMIUM HEALTHCARE & BUSINESS IT SOLUTIONS</span>
-                    </div>
-                </a>
-                
-                <!-- Desktop Navigation - Visible on laptop/desktop -->
-                <div class="desktop-nav">
-                    <ul class="nav-links">
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#about">About Us</a></li>
-                        <li><a href="#services">Services</a></li>
-                        <li><a href="#why-us">Why Choose Us</a></li>
-                        <li><a href="#industries">Industries</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                    </ul>
-                    <a href="#contact" class="luxury-cta">Get Premium Consultation</a>
-                </div>
-                
-                <!-- Mobile Toggle - Only visible on mobile -->
-                <button class="mobile-toggle" id="mobileToggle">
-                    <i class="fas fa-bars"></i>
-                </button>
-            </div>
-        </div>
-        
-        <!-- Mobile Menu - Hidden by default, shown on mobile when activated -->
-        <div class="mobile-menu" id="mobileMenu">
-            <ul class="mobile-nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About Us</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#why-us">Why Choose Us</a></li>
-                <li><a href="#industries">Industries</a></li>
-                <li><a href="#contact">Contact</a></li>
-                <li><a href="#contact" class="luxury-cta">Get Consultation</a></li>
-            </ul>
-        </div>
-    </header>
+  <header class="site-header" id="siteHeader">
+    <nav class="nav container" aria-label="Main navigation">
+      <a class="brand" href="#home" aria-label="Rahimi Solution home">
+        <span class="brand-mark"><i class="fa-solid fa-plus"></i></span>
+        <span>Rahimi Solution<small>Technology with purpose</small></span>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#about">About</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#industries">Industries</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <a class="button" href="#contact">Let’s talk <i class="fa-solid fa-arrow-right"></i></a>
+      <button class="menu-toggle" id="menuToggle" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="navLinks"><i class="fa-solid fa-bars"></i></button>
+    </nav>
+  </header>
 
-    <!-- Luxury Hero Section -->
-    <section class="hero-luxury section" id="home">
-        <div class="container">
-            <div class="hero-content">
-                <span class="hero-badge">ELITE HEALTHCARE & BUSINESS IT SPECIALISTS</span>
-                <h1 class="hero-title animate-on-scroll">Premium Digital Transformation for <span>Healthcare Excellence</span></h1>
-                <p class="hero-description animate-on-scroll">
-                    Rahimi Solution crafts bespoke electronic systems, HMIS platforms, E-Prescription solutions, 
-                    and enterprise-grade digital infrastructures for clinics, hospitals, pharmacies, and businesses— 
-                    delivering security, efficiency, and unparalleled user experience.
-                </p>
-                <div class="hero-buttons animate-on-scroll">
-                    <a href="#services" class="btn-luxury">Explore Premium Solutions</a>
-                    <a href="#contact" class="btn-secondary">Schedule Elite Consultation</a>
-                </div>
-            </div>
+  <main>
+    <section class="hero" id="home">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <span class="eyebrow">Healthcare & business IT</span>
+          <h1>Better technology.<br><span>Better outcomes.</span></h1>
+          <p>We help healthcare organizations and growing businesses work smarter with secure, reliable technology designed around the people who use it.</p>
+          <div class="hero-actions">
+            <a class="button" href="#services">Explore our services <i class="fa-solid fa-arrow-right"></i></a>
+            <a class="button button-outline" href="#about">Get to know us</a>
+          </div>
+          <div class="hero-note"><i class="fa-solid fa-circle-check"></i> Practical expertise. People-first partnership.</div>
         </div>
+        <div class="hero-visual" aria-label="Healthcare professional using digital technology">
+          <div class="hero-photo"><img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=1100&q=85" alt="Healthcare professionals collaborating around a digital tablet" fetchpriority="high"></div>
+          <div class="float-card one"><i class="fa-solid fa-shield-heart"></i><span><strong>People first</strong><small>Technology that supports care</small></span></div>
+          <div class="float-card two"><i class="fa-solid fa-lock"></i><span><strong>Secure by design</strong><small>Built for confidence</small></span></div>
+        </div>
+      </div>
     </section>
 
-    <!-- About Section -->
+    <div class="trust-strip" aria-label="Our approach">
+      <div class="container trust-inner">
+        <div class="trust-item"><i class="fa-solid fa-heart-pulse"></i> Healthcare focused</div>
+        <div class="trust-item"><i class="fa-solid fa-shield-halved"></i> Security minded</div>
+        <div class="trust-item"><i class="fa-solid fa-handshake"></i> Partner-led</div>
+        <div class="trust-item"><i class="fa-solid fa-lightbulb"></i> Built for what’s next</div>
+      </div>
+    </div>
+
     <section class="section" id="about">
-        <div class="container">
-            <div class="section-title animate-on-scroll">
-                <h2>About Rahimi Solution</h2>
-                <p>Leading provider of premium technology and digital health solutions for discerning healthcare providers and enterprises</p>
-            </div>
-            
-            <div class="about-content">
-                <div class="about-text animate-on-scroll">
-                    <h3>Excellence in Digital Healthcare</h3>
-                    <p>
-                        Rahimi Solution is a premier technology and digital health solutions firm specializing in 
-                        the development of sophisticated databases, web-based and offline systems, and cutting-edge 
-                        healthcare information technologies. We are dedicated to empowering clinics, hospitals, 
-                        pharmacies, and enterprises with secure, efficient, and luxurious digital experiences.
-                    </p>
-                    <p>
-                        With an unwavering commitment to innovation, reliability, and bespoke solutions, Rahimi 
-                        Solution delivers customized software products that elevate workflow efficiency, ensure 
-                        data integrity, and enhance service quality for our distinguished clients.
-                    </p>
-                </div>
-                
-                <div class="about-text animate-on-scroll">
-                    <h3>Our Commitment to Excellence</h3>
-                    <p>
-                        We forge enduring partnerships with our clients by providing solutions that 
-                        masterfully address their unique challenges. Our elite team combines technical mastery 
-                        with profound understanding of healthcare and enterprise operations.
-                    </p>
-                    <p>
-                        From boutique clinics to prestigious hospitals, from local enterprises to international 
-                        organizations, we deliver solutions that create tangible impact in day-to-day operations 
-                        while maintaining the highest standards of luxury and sophistication.
-                    </p>
-                </div>
-            </div>
-            
-            <div class="vision-mission animate-on-scroll">
-                <h3>Our Vision & Mission</h3>
-                <div class="vision-mission-grid">
-                    <div class="vm-item">
-                        <h4><i class="fas fa-gem"></i> Our Vision</h4>
-                        <p>
-                            To establish ourselves as the preeminent provider of digital healthcare and 
-                            business management solutions in the region by delivering intelligent, secure, 
-                            and sophisticated technology that empowers organizations and elevates service 
-                            delivery to extraordinary levels.
-                        </p>
-                    </div>
-                    <div class="vm-item">
-                        <h4><i class="fas fa-crown"></i> Our Mission</h4>
-                        <p>
-                            To architect and implement superior software solutions tailored to real‑world 
-                            requirements, support healthcare providers with reliable and elegant electronic 
-                            systems, champion digital transformation, and provide continuous premium 
-                            technical support for our esteemed clients.
-                        </p>
-                    </div>
-                </div>
-            </div>
+      <div class="container about-grid">
+        <div class="about-visual reveal">
+          <div class="about-image"><img src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1100&q=85" alt="A team working together on a technology project" loading="lazy"></div>
+          <div class="about-stamp"><strong>One team.</strong><span>Technology and people moving forward together.</span></div>
         </div>
+        <div class="about-copy reveal">
+          <span class="eyebrow">Who we are</span>
+          <h2>Technology should make work feel easier.</h2>
+          <p>Rahimi Solution brings healthcare insight and practical IT expertise together. We listen first, understand your day-to-day challenges, and shape solutions that fit your organization—not the other way around.</p>
+          <ul class="check-list">
+            <li><i class="fa-solid fa-circle-check"></i><span>Clear recommendations rooted in your real needs</span></li>
+            <li><i class="fa-solid fa-circle-check"></i><span>Reliable technology with security at its core</span></li>
+            <li><i class="fa-solid fa-circle-check"></i><span>Long-term support from a team that cares</span></li>
+          </ul>
+          <div class="values">
+            <article class="value-card"><i class="fa-solid fa-eye"></i><h3>Our vision</h3><p>Make modern technology more useful, accessible, and human.</p></article>
+            <article class="value-card"><i class="fa-solid fa-compass"></i><h3>Our mission</h3><p>Help organizations build confidence and thrive through better IT.</p></article>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <!-- Services Section -->
-    <section class="section services-luxury" id="services">
-        <div class="container">
-            <div class="section-title animate-on-scroll">
-                <h2>Premium Services</h2>
-                <p>Comprehensive digital solutions designed for healthcare and business excellence</p>
-            </div>
-            
-            <div class="services-grid">
-                <div class="service-card animate-on-scroll">
-                    <div class="service-icon">
-                        <i class="fas fa-prescription-bottle-alt"></i>
-                    </div>
-                    <h3>Electronic Prescription Systems</h3>
-                    <p>Secure and sophisticated e-prescription platforms for elite clinics, hospitals, and pharmacies.</p>
-                    <ul class="service-features">
-                        <li>Advanced doctor authentication system</li>
-                        <li>Comprehensive patient records management</li>
-                        <li>Digital prescription generation with signatures</li>
-                        <li>Integrated drug database with interactions</li>
-                        <li>Printable and shareable premium prescriptions</li>
-                        <li>Offline and online seamless operation modes</li>
-                    </ul>
-                </div>
-                
-                <div class="service-card animate-on-scroll">
-                    <div class="service-icon">
-                        <i class="fas fa-hospital-alt"></i>
-                    </div>
-                    <h3>Hospital Management System</h3>
-                    <p>Complete hospital management solutions for exceptional healthcare delivery.</p>
-                    <ul class="service-features">
-                        <li>Patient registration and premium billing</li>
-                        <li>OPD and IPD comprehensive management</li>
-                        <li>Laboratory and radiology advanced modules</li>
-                        <li>Pharmacy and inventory precision control</li>
-                        <li>Staff and duty intelligent scheduling</li>
-                        <li>Advanced reports and analytics dashboard</li>
-                    </ul>
-                </div>
-                
-                <div class="service-card animate-on-scroll">
-                    <div class="service-icon">
-                        <i class="fas fa-folder-open"></i>
-                    </div>
-                    <h3>Record Management System</h3>
-                    <p>Customized RMS solutions for elite clinics, labs, diagnostic centers, and enterprises.</p>
-                    <ul class="service-features">
-                        <li>Military-grade secure data storage</li>
-                        <li>Lightning-fast record retrieval system</li>
-                        <li>Role‑based granular access control</li>
-                        <li>Automated backup and disaster recovery</li>
-                        <li>Custom report generation engine</li>
-                        <li>Multi‑branch enterprise support</li>
-                    </ul>
-                </div>
-                
-                <div class="service-card animate-on-scroll">
-                    <div class="service-icon">
-                        <i class="fas fa-laptop-code"></i>
-                    </div>
-                    <h3>Website & Application Development</h3>
-                    <p>Premium websites and applications for distinguished businesses and healthcare providers.</p>
-                    <ul class="service-features">
-                        <li>Professional business websites</li>
-                        <li>Clinic and hospital premium websites</li>
-                        <li>Sophisticated web applications</li>
-                        <li>Offline desktop enterprise systems</li>
-                        <li>Secure encrypted database design</li>
-                        <li>Scalable cloud architecture</li>
-                    </ul>
-                </div>
-                
-                <div class="service-card animate-on-scroll">
-                    <div class="service-icon">
-                        <i class="fas fa-cogs"></i>
-                    </div>
-                    <h3>Content Management System</h3>
-                    <p>Intuitive CMS platforms for organizations to manage their digital presence elegantly.</p>
-                    <ul class="service-features">
-                        <li>Intuitive content editing interface</li>
-                        <li>Multilingual comprehensive support</li>
-                        <li>Modern responsive premium design</li>
-                        <li>SEO‑optimized structure</li>
-                        <li>Advanced user management system</li>
-                        <li>Mobile‑first optimized layout</li>
-                    </ul>
-                </div>
-                
-                <div class="service-card animate-on-scroll">
-                    <div class="service-icon">
-                        <i class="fas fa-shield-alt"></i>
-                    </div>
-                    <h3>IT Consultation & Support</h3>
-                    <p>Expert IT consultation and premium technical support for all our solutions.</p>
-                    <ul class="service-features">
-                        <li>Comprehensive system analysis</li>
-                        <li>White-glove implementation support</li>
-                        <li>Staff training and certification</li>
-                        <li>24/7 premium technical support</li>
-                        <li>System updates and maintenance</li>
-                        <li>Data security auditing</li>
-                    </ul>
-                </div>
-            </div>
+    <section class="section services" id="services">
+      <div class="container">
+        <div class="section-heading center-heading reveal">
+          <span class="eyebrow">What we do</span>
+          <h2>Technology that works for you.</h2>
+          <p>From everyday IT support to healthcare-focused systems, we help you simplify operations and move forward with confidence.</p>
         </div>
+        <div class="services-grid">
+          <article class="service-card reveal"><div class="service-icon"><i class="fa-solid fa-laptop-medical"></i></div><h3>Healthcare IT solutions</h3><p>Practical technology support and digital tools that help healthcare teams focus on delivering quality care.</p><i class="fa-solid fa-arrow-right card-arrow" aria-hidden="true"></i></article>
+          <article class="service-card reveal"><div class="service-icon"><i class="fa-solid fa-network-wired"></i></div><h3>Business IT support</h3><p>Dependable help with your systems, devices, networks, and daily technology challenges.</p><i class="fa-solid fa-arrow-right card-arrow" aria-hidden="true"></i></article>
+          <article class="service-card reveal"><div class="service-icon"><i class="fa-solid fa-cloud"></i></div><h3>Cloud & modernization</h3><p>Move toward flexible, connected ways of working with a plan that respects your team and budget.</p><i class="fa-solid fa-arrow-right card-arrow" aria-hidden="true"></i></article>
+          <article class="service-card reveal"><div class="service-icon"><i class="fa-solid fa-user-shield"></i></div><h3>Security & risk guidance</h3><p>Strengthen your technology foundations and help protect the information your organization depends on.</p><i class="fa-solid fa-arrow-right card-arrow" aria-hidden="true"></i></article>
+          <article class="service-card reveal"><div class="service-icon"><i class="fa-solid fa-sitemap"></i></div><h3>IT planning & consulting</h3><p>Make informed decisions with straightforward advice aligned to your goals and growth plans.</p><i class="fa-solid fa-arrow-right card-arrow" aria-hidden="true"></i></article>
+          <article class="service-card reveal"><div class="service-icon"><i class="fa-solid fa-headset"></i></div><h3>Ongoing partnership</h3><p>Get thoughtful follow-through and continued support as your needs and technology evolve.</p><i class="fa-solid fa-arrow-right card-arrow" aria-hidden="true"></i></article>
+        </div>
+      </div>
     </section>
 
-    <!-- Why Choose Us Section -->
-    <section class="section why-luxury" id="why-us">
-        <div class="container">
-            <div class="section-title animate-on-scroll">
-                <h2>Why Choose Rahimi Solution?</h2>
-                <p>We deliver excellence through innovation, reliability, and dedicated premium support</p>
-            </div>
-            
-            <div class="reasons-grid">
-                <div class="reason-card animate-on-scroll">
-                    <div class="reason-icon">
-                        <i class="fas fa-gem"></i>
-                    </div>
-                    <h4>Bespoke Solutions</h4>
-                    <p>Tailored specifically for your unique needs and sophisticated workflows</p>
-                </div>
-                
-                <div class="reason-card animate-on-scroll">
-                    <div class="reason-icon">
-                        <i class="fas fa-user-md"></i>
-                    </div>
-                    <h4>Healthcare IT Mastery</h4>
-                    <p>Profound understanding of advanced medical systems and requirements</p>
-                </div>
-                
-                <div class="reason-card animate-on-scroll">
-                    <div class="reason-icon">
-                        <i class="fas fa-wifi"></i>
-                    </div>
-                    <h4>Offline & Online Excellence</h4>
-                    <p>Reliable operation even in challenging internet environments</p>
-                </div>
-                
-                <div class="reason-card animate-on-scroll">
-                    <div class="reason-icon">
-                        <i class="fas fa-lock"></i>
-                    </div>
-                    <h4>Premium Data Security</h4>
-                    <p>Enterprise-grade patient and business data protection</p>
-                </div>
-                
-                <div class="reason-card animate-on-scroll">
-                    <div class="reason-icon">
-                        <i class="fas fa-award"></i>
-                    </div>
-                    <h4>Competitive Excellence</h4>
-                    <p>Premium value packages for distinguished organizations</p>
-                </div>
-                
-                <div class="reason-card animate-on-scroll">
-                    <div class="reason-icon">
-                        <i class="fas fa-headset"></i>
-                    </div>
-                    <h4>Concierge Support</h4>
-                    <p>Priority response and on‑site premium assistance</p>
-                </div>
-            </div>
+    <section class="section feature-band">
+      <div class="container feature-grid">
+        <div class="feature-copy reveal">
+          <span class="eyebrow">A better kind of IT partner</span>
+          <h2>Good technology is only part of the solution.</h2>
+          <p>You need a partner who understands your priorities, communicates clearly, and stays with you through the details. That’s how we turn technology into lasting progress.</p>
+          <a class="button" href="#contact">Start a conversation <i class="fa-solid fa-arrow-right"></i></a>
         </div>
+        <div class="feature-list reveal">
+          <article class="feature-item"><i class="fa-solid fa-ear-listen"></i><h3>We listen first</h3><p>Every recommendation starts with understanding your people and goals.</p></article>
+          <article class="feature-item"><i class="fa-solid fa-cubes-stacked"></i><h3>We keep it practical</h3><p>Solutions should be clear, useful, and right-sized for your team.</p></article>
+          <article class="feature-item"><i class="fa-solid fa-lock"></i><h3>We take trust seriously</h3><p>Security and reliability are part of the conversation from day one.</p></article>
+          <article class="feature-item"><i class="fa-solid fa-chart-line"></i><h3>We look ahead</h3><p>Build a stronger foundation for the next stage of your growth.</p></article>
+        </div>
+      </div>
     </section>
 
-    <!-- Industries Section -->
-    <section class="section industries-luxury" id="industries">
-        <div class="container">
-            <div class="section-title animate-on-scroll">
-                <h2>Industries We Serve</h2>
-                <p>Transforming operations across multiple sectors with bespoke premium solutions</p>
-            </div>
-            
-            <div class="industries-grid">
-                <div class="industry-item animate-on-scroll">
-                    <i class="fas fa-hospital"></i>
-                    <h4>Hospitals</h4>
-                    <p>Complete HMIS solutions</p>
-                </div>
-                
-                <div class="industry-item animate-on-scroll">
-                    <i class="fas fa-clinic-medical"></i>
-                    <h4>Clinics</h4>
-                    <p>E‑prescription & RMS systems</p>
-                </div>
-                
-                <div class="industry-item animate-on-scroll">
-                    <i class="fas fa-prescription-bottle-alt"></i>
-                    <h4>Pharmacies</h4>
-                    <p>Inventory & dispensing systems</p>
-                </div>
-                
-                <div class="industry-item animate-on-scroll">
-                    <i class="fas fa-microscope"></i>
-                    <h4>Diagnostic Centers</h4>
-                    <p>Laboratory management systems</p>
-                </div>
-                
-                <div class="industry-item animate-on-scroll">
-                    <i class="fas fa-heart"></i>
-                    <h4>NGOs & Health Projects</h4>
-                    <p>Specialized healthcare solutions</p>
-                </div>
-                
-                <div class="industry-item animate-on-scroll">
-                    <i class="fas fa-briefcase"></i>
-                    <h4>Small & Medium Businesses</h4>
-                    <p>Business management systems</p>
-                </div>
-                
-                <div class="industry-item animate-on-scroll">
-                    <i class="fas fa-graduation-cap"></i>
-                    <h4>Educational Institutions</h4>
-                    <p>Academic management systems</p>
-                </div>
-            </div>
+    <section class="section" id="industries">
+      <div class="container">
+        <div class="section-heading center-heading reveal">
+          <span class="eyebrow">Who we support</span>
+          <h2>Built around your world.</h2>
+          <p>We work with teams across care and business, adapting technology to the realities of each environment.</p>
         </div>
+        <div class="industries-grid">
+          <article class="industry reveal"><i class="fa-solid fa-hospital"></i><h3>Healthcare</h3><p>Support for care teams and health organizations.</p></article>
+          <article class="industry reveal"><i class="fa-solid fa-briefcase"></i><h3>Small business</h3><p>Reliable systems for growing teams.</p></article>
+          <article class="industry reveal"><i class="fa-solid fa-building"></i><h3>Professional services</h3><p>Connected tools for client-focused work.</p></article>
+          <article class="industry reveal"><i class="fa-solid fa-people-group"></i><h3>Community organizations</h3><p>Practical technology for meaningful work.</p></article>
+        </div>
+      </div>
     </section>
 
-    <!-- Future Plans Section -->
-    <section class="section future-plans-luxury">
-        <div class="container">
-            <div class="section-title animate-on-scroll">
-                <h2>Future Plans & Innovations</h2>
-                <p>We're pioneering the future of healthcare technology with visionary solutions</p>
-            </div>
-            
-            <div class="plans-grid">
-                <div class="plan-card animate-on-scroll">
-                    <div class="plan-icon">
-                        <i class="fas fa-robot"></i>
-                    </div>
-                    <h3>AI‑Based Medical Support</h3>
-                    <p>Artificial intelligence for advanced medical decision support and diagnostics</p>
-                </div>
-                
-                <div class="plan-card animate-on-scroll">
-                    <div class="plan-icon">
-                        <i class="fas fa-video"></i>
-                    </div>
-                    <h3>Telemedicine Platforms</h3>
-                    <p>Secure video consultation and remote patient monitoring systems</p>
-                </div>
-                
-                <div class="plan-card animate-on-scroll">
-                    <div class="plan-icon">
-                        <i class="fas fa-mobile-alt"></i>
-                    </div>
-                    <h3>Mobile Health Applications</h3>
-                    <p>Patient‑centric mobile apps for health tracking and communication</p>
-                </div>
-                
-                <div class="plan-card animate-on-scroll">
-                    <div class="plan-icon">
-                        <i class="fas fa-network-wired"></i>
-                    </div>
-                    <h3>National E‑Health Systems</h3>
-                    <p>Large‑scale integrated health information exchange platforms</p>
-                </div>
-            </div>
+    <section class="section contact" id="contact">
+      <div class="container contact-grid">
+        <div class="contact-copy reveal">
+          <span class="eyebrow">Let’s connect</span>
+          <h2>Tell us what you’re working toward.</h2>
+          <p>Have a technology challenge or an idea for what’s next? Share a little about it and start a conversation with Rahimi Solution.</p>
+          <div class="contact-note"><strong>A thoughtful first step.</strong><br>We’ll learn about your needs and discuss whether we’re the right partner to help.</div>
         </div>
+        <form class="contact-form reveal" id="contactForm">
+          <div class="form-row">
+            <div class="field"><label for="name">Your name</label><input id="name" name="name" autocomplete="name" required placeholder="Name"></div>
+            <div class="field"><label for="email">Work email</label><input id="email" name="email" type="email" autocomplete="email" required placeholder="you@company.com"></div>
+          </div>
+          <div class="field"><label for="organization">Organization</label><input id="organization" name="organization" autocomplete="organization" placeholder="Your organization"></div>
+          <div class="field"><label for="service">How can we help?</label><select id="service" name="service"><option value="">Choose a topic</option><option>Healthcare IT</option><option>Business IT support</option><option>Cloud and modernization</option><option>Security and risk</option><option>IT planning</option><option>Something else</option></select></div>
+          <div class="field"><label for="message">A little about your needs</label><textarea id="message" name="message" required placeholder="What would you like to improve or achieve?"></textarea></div>
+          <button class="button" type="submit">Prepare email <i class="fa-solid fa-paper-plane"></i></button>
+          <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
+        </form>
+      </div>
     </section>
+  </main>
 
-    <!-- Contact Section -->
-    <section class="section contact-luxury" id="contact">
-        <div class="container">
-            <div class="section-title animate-on-scroll">
-                <h2>Contact Us</h2>
-                <p>Begin your journey toward digital excellence with our premium consultation</p>
-            </div>
-            
-            <div class="contact-container">
-                <div class="contact-info animate-on-scroll">
-                    <h3>Start Your Premium Digital Transformation</h3>
-                    <p>
-                        Ready to elevate your healthcare facility or business with sophisticated digital solutions? 
-                        Our elite team of experts is prepared to understand your requirements and deliver 
-                        the perfect premium solution.
-                    </p>
-                    
-                    <div class="contact-details">
-                        <div class="contact-detail">
-                            <div class="contact-icon">
-                                <i class="fas fa-phone-alt"></i>
-                            </div>
-                            <div class="contact-text">
-                                <h4>Phone Number</h4>
-                                <a href="tel:+93784475000">+93 784 475 000</a>
-                            </div>
-                        </div>
-                        
-                        <div class="contact-detail">
-                            <div class="contact-icon">
-                                <i class="fas fa-envelope"></i>
-                            </div>
-                            <div class="contact-text">
-                                <h4>Email Address</h4>
-                                <a href="mailto:drkamalnasirrahim@gmail.com">drkamalnasirrahim@gmail.com</a><br>
-                                <a href="mailto:info@rahimi-solution.com">info@rahimi-solution.com</a>
-                            </div>
-                        </div>
-                        
-                        <div class="contact-detail">
-                            <div class="contact-icon">
-                                <i class="fas fa-globe"></i>
-                            </div>
-                            <div class="contact-text">
-                                <h4>Website</h4>
-                                <a href="https://rahimi-solution.com" target="_blank">rahimi-solution.com</a>
-                            </div>
-                        </div>
-                        
-                        <div class="contact-detail">
-                            <div class="contact-icon">
-                                <i class="fas fa-map-marker-alt"></i>
-                            </div>
-                            <div class="contact-text">
-                                <h4>Service Areas</h4>
-                                <p>Afghanistan & International Premium Clients</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="contact-form animate-on-scroll">
-                    <form id="contactForm">
-                        <div class="form-group">
-                            <label for="name">Full Name *</label>
-                            <input type="text" id="name" class="form-control" placeholder="Enter your full name" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="email">Email Address *</label>
-                            <input type="email" id="email" class="form-control" placeholder="Enter your email address" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="phone">Phone Number</label>
-                            <input type="tel" id="phone" class="form-control" placeholder="Enter your phone number">
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="organization">Organization</label>
-                            <input type="text" id="organization" class="form-control" placeholder="Your company or clinic name">
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="service">Service Interested In</label>
-                            <select id="service" class="form-control">
-                                <option value="">Select a premium service</option>
-                                <option value="eprescription">Electronic Prescription System</option>
-                                <option value="hmis">Hospital Management System</option>
-                                <option value="rms">Record Management System</option>
-                                <option value="cms">Content Management System</option>
-                                <option value="website">Premium Website Development</option>
-                                <option value="consultation">IT Consultation</option>
-                            </select>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="message">Project Details *</label>
-                            <textarea id="message" class="form-control" placeholder="Tell us about your project requirements" required></textarea>
-                        </div>
-                        
-                        <button type="submit" class="btn-luxury" style="width: 100%;">Request Premium Consultation</button>
-                    </form>
-                </div>
-            </div>
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-about">
+          <a class="brand" href="#home"><span class="brand-mark"><i class="fa-solid fa-plus"></i></span><span>Rahimi Solution<small>Technology with purpose</small></span></a>
+          <p>Thoughtful healthcare and business IT solutions designed to help people and organizations move forward.</p>
         </div>
-    </section>
+        <div class="footer-links"><h3>Explore</h3><a href="#about">About us</a><a href="#services">Services</a><a href="#industries">Who we support</a></div>
+        <div class="footer-links"><h3>Get in touch</h3><a href="#contact">Start a conversation</a><a href="#home">Back to top ↑</a></div>
+      </div>
+      <div class="footer-bottom"><span>© <span id="year"></span> Rahimi Solution. All rights reserved.</span><span>Technology with purpose.</span></div>
+    </div>
+  </footer>
 
-    <!-- Luxury Footer -->
-    <footer class="luxury-footer">
-        <div class="container">
-            <div class="footer-content">
-                <div>
-                    <div class="footer-logo">Rahimi Solution</div>
-                    <p class="footer-about">
-                        Transforming healthcare and businesses through sophisticated digital solutions. 
-                        We deliver secure, efficient, and premium systems for distinguished clinics, hospitals, 
-                        pharmacies, and enterprises.
-                    </p>
-                    <div class="social-links">
-                        <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
-                    </div>
-                </div>
-                
-                <div class="footer-links">
-                    <h4 class="footer-heading">Quick Links</h4>
-                    <ul>
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#about">About Us</a></li>
-                        <li><a href="#services">Services</a></li>
-                        <li><a href="#why-us">Why Choose Us</a></li>
-                        <li><a href="#industries">Industries</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-links">
-                    <h4 class="footer-heading">Premium Services</h4>
-                    <ul>
-                        <li><a href="#services">E‑Prescription Systems</a></li>
-                        <li><a href="#services">Hospital Management</a></li>
-                        <li><a href="#services">Record Management</a></li>
-                        <li><a href="#services">Website Development</a></li>
-                        <li><a href="#services">CMS Development</a></li>
-                        <li><a href="#services">IT Consultation</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-links">
-                    <h4 class="footer-heading">Company Values</h4>
-                    <ul>
-                        <li><a>Integrity & Excellence</a></li>
-                        <li><a>Client‑Centric Approach</a></li>
-                        <li><a>Data Security & Privacy</a></li>
-                        <li><a>Continuous Innovation</a></li>
-                        <li><a>Long‑Term Partnership</a></li>
-                    </ul>
-                </div>
-            </div>
-            
-            <div class="copyright">
-                <p>&copy; 2024 Rahimi Solution. All Rights Reserved. | Premium Systems for an Exceptional Future</p>
-                <p style="margin-top: 15px;">Contact: +93 784 475 000 | Email: drkamalnasirrahim@gmail.com | Website: rahimi-solution.com</p>
-            </div>
-        </div>
-    </footer>
+  <script>
+    const header = document.getElementById('siteHeader');
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+    const menuIcon = menuToggle.querySelector('i');
 
-    <script>
-        // Header scroll effect
-        window.addEventListener('scroll', function() {
-            const header = document.getElementById('header');
-            if (window.scrollY > 50) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
-        });
+    const updateHeader = () => header.classList.toggle('scrolled', window.scrollY > 20);
+    updateHeader();
+    window.addEventListener('scroll', updateHeader, { passive: true });
 
-        // Mobile menu toggle - FIXED
-        const mobileToggle = document.getElementById('mobileToggle');
-        const mobileMenu = document.getElementById('mobileMenu');
-        const body = document.body;
-        
-        mobileToggle.addEventListener('click', function(e) {
-            e.stopPropagation();
-            mobileMenu.classList.toggle('active');
-            mobileToggle.innerHTML = mobileMenu.classList.contains('active') 
-                ? '<i class="fas fa-times"></i>' 
-                : '<i class="fas fa-bars"></i>';
-            
-            // Prevent scrolling when mobile menu is open
-            if (mobileMenu.classList.contains('active')) {
-                body.style.overflow = 'hidden';
-            } else {
-                body.style.overflow = 'auto';
-            }
-        });
+    function closeMenu() {
+      navLinks.classList.remove('open');
+      document.body.classList.remove('menu-open');
+      menuToggle.setAttribute('aria-expanded', 'false');
+      menuToggle.setAttribute('aria-label', 'Open navigation menu');
+      menuIcon.className = 'fa-solid fa-bars';
+    }
+    menuToggle.addEventListener('click', () => {
+      const isOpen = navLinks.classList.toggle('open');
+      document.body.classList.toggle('menu-open', isOpen);
+      menuToggle.setAttribute('aria-expanded', String(isOpen));
+      menuToggle.setAttribute('aria-label', isOpen ? 'Close navigation menu' : 'Open navigation menu');
+      menuIcon.className = isOpen ? 'fa-solid fa-xmark' : 'fa-solid fa-bars';
+    });
+    navLinks.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
+    window.addEventListener('resize', () => { if (window.innerWidth > 700) closeMenu(); });
 
-        // Close mobile menu when clicking a link
-        document.querySelectorAll('.mobile-nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.remove('active');
-                mobileToggle.innerHTML = '<i class="fas fa-bars"></i>';
-                body.style.overflow = 'auto';
-            });
-        });
-
-        // Close mobile menu when clicking outside
-        document.addEventListener('click', function(e) {
-            if (mobileMenu.classList.contains('active') && 
-                !mobileMenu.contains(e.target) && 
-                !mobileToggle.contains(e.target)) {
-                mobileMenu.classList.remove('active');
-                mobileToggle.innerHTML = '<i class="fas fa-bars"></i>';
-                body.style.overflow = 'auto';
-            }
-        });
-
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                if(targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if(targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 100,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-
-        // Form submission
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const submitBtn = this.querySelector('button[type="submit"]');
-            const originalText = submitBtn.textContent;
-            
-            // Show loading state
-            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
-            submitBtn.disabled = true;
-            
-            // Simulate form submission
-            setTimeout(() => {
-                // Show success message
-                const successMsg = document.createElement('div');
-                successMsg.innerHTML = `
-                    <div style="
-                        position: fixed;
-                        top: 50%;
-                        left: 50%;
-                        transform: translate(-50%, -50%);
-                        background: var(--primary-navy);
-                        border: 2px solid var(--primary-gold);
-                        padding: 40px;
-                        border-radius: var(--radius-elegant);
-                        color: var(--light-cream);
-                        text-align: center;
-                        z-index: 10000;
-                        box-shadow: var(--shadow-hard);
-                        max-width: 400px;
-                        width: 90%;
-                    ">
-                        <i class="fas fa-check-circle" style="color: var(--primary-gold); font-size: 48px; margin-bottom: 20px;"></i>
-                        <h3 style="color: var(--primary-gold); margin-bottom: 15px;">Request Submitted!</h3>
-                        <p>Thank you for your interest. Our premium team will contact you within 24 hours.</p>
-                        <button onclick="this.parentElement.remove()" class="btn-luxury" style="margin-top: 25px; padding: 12px 30px;">Close</button>
-                    </div>
-                `;
-                document.body.appendChild(successMsg);
-                
-                // Reset form
-                this.reset();
-                
-                // Reset button
-                submitBtn.textContent = originalText;
-                submitBtn.disabled = false;
-            }, 1500);
-        });
-
-        // Animation on scroll
-        const animateElements = document.querySelectorAll('.animate-on-scroll');
-        
-        const checkScroll = () => {
-            animateElements.forEach(element => {
-                const elementTop = element.getBoundingClientRect().top;
-                const windowHeight = window.innerHeight;
-                
-                if (elementTop < windowHeight - 100) {
-                    element.classList.add('visible');
-                }
-            });
-        };
-        
-        // Initial check
-        checkScroll();
-        
-        // Check on scroll
-        window.addEventListener('scroll', checkScroll);
-
-        // Add active class to current nav link
-        const sections = document.querySelectorAll('section');
-        const navLinks = document.querySelectorAll('.nav-links a, .mobile-nav-links a');
-        
-        window.addEventListener('scroll', function() {
-            let current = '';
-            
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-                if (scrollY >= (sectionTop - 150)) {
-                    current = section.getAttribute('id');
-                }
-            });
-            
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href') === `#${current}`) {
-                    link.classList.add('active');
-                }
-            });
-        });
-
-        // Add gold particle effect to hero section
-        function createGoldParticles() {
-            const hero = document.querySelector('.hero-luxury');
-            if (!hero) return;
-            
-            for (let i = 0; i < 15; i++) {
-                const particle = document.createElement('div');
-                particle.style.cssText = `
-                    position: absolute;
-                    width: ${Math.random() * 10 + 2}px;
-                    height: ${Math.random() * 10 + 2}px;
-                    background: var(--primary-gold);
-                    border-radius: 50%;
-                    opacity: ${Math.random() * 0.3 + 0.1};
-                    top: ${Math.random() * 100}%;
-                    left: ${Math.random() * 100}%;
-                    animation: floatParticle ${Math.random() * 20 + 10}s linear infinite;
-                    z-index: 1;
-                `;
-                
-                document.styleSheets[0].insertRule(`
-                    @keyframes floatParticle {
-                        0% { transform: translate(0, 0) rotate(0deg); opacity: 0; }
-                        10% { opacity: 0.3; }
-                        90% { opacity: 0.3; }
-                        100% { transform: translate(${Math.random() * 200 - 100}px, -100vh) rotate(${Math.random() * 360}deg); opacity: 0; }
-                    }
-                `, document.styleSheets[0].cssRules.length);
-                
-                hero.appendChild(particle);
-            }
+    const revealObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
         }
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(element => revealObserver.observe(element));
 
-        // Initialize when page loads
-        document.addEventListener('DOMContentLoaded', function() {
-            createGoldParticles();
-            
-            // Set initial overflow for body
-            body.style.overflow = 'auto';
-        });
-
-        // Close mobile menu on escape key
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape' && mobileMenu.classList.contains('active')) {
-                mobileMenu.classList.remove('active');
-                mobileToggle.innerHTML = '<i class="fas fa-bars"></i>';
-                body.style.overflow = 'auto';
-            }
-        });
-    </script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    document.getElementById('contactForm').addEventListener('submit', event => {
+      event.preventDefault();
+      const form = event.currentTarget;
+      if (!form.reportValidity()) return;
+      const data = new FormData(form);
+      const subject = encodeURIComponent(`Website inquiry from ${data.get('name')}`);
+      const body = encodeURIComponent(
+        `Name: ${data.get('name')}\nEmail: ${data.get('email')}\nOrganization: ${data.get('organization') || 'Not provided'}\nTopic: ${data.get('service') || 'Not specified'}\n\n${data.get('message')}`
+      );
+      document.getElementById('formStatus').textContent = 'Your email app will open with your message. Add a verified business email address to the mailto link in this page before publishing.';
+      window.location.href = `mailto:?subject=${subject}&body=${body}`;
+    });
+  </script>
 </body>
 </html>
